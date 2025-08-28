@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CreditCard, ArrowLeft, ExternalLink, FileText, Calculator, Calendar } from "lucide-react";
+import { CreditCard, ArrowLeft, ExternalLink, FileText, Calculator, Calendar, Search, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
+import DigitalSignature from "@/components/DigitalSignature";
 
 const IPTUPage = () => {
   return (
@@ -36,34 +37,50 @@ const IPTUPage = () => {
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="flex items-start space-x-3">
-                  <Calculator className="w-5 h-5 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold">Consultar Débitos</h3>
-                    <p className="text-muted-foreground text-sm">Veja todos os débitos pendentes do seu imóvel</p>
+                <Link to="/servicos/iptu/consulta" className="block">
+                  <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent/10 transition-colors">
+                    <Search className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-semibold">Consultar Débitos</h3>
+                      <p className="text-muted-foreground text-sm">Veja todos os débitos pendentes do seu imóvel</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <FileText className="w-5 h-5 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold">Emitir Guias</h3>
-                    <p className="text-muted-foreground text-sm">Gere guias de pagamento atualizadas</p>
+                </Link>
+                
+                <Link to="/servicos/iptu/emissao" className="block">
+                  <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent/10 transition-colors">
+                    <Printer className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-semibold">Emitir Guias</h3>
+                      <p className="text-muted-foreground text-sm">Gere guias de pagamento atualizadas</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Calendar className="w-5 h-5 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold">Parcelamento</h3>
-                    <p className="text-muted-foreground text-sm">Solicite parcelamento de débitos</p>
+                </Link>
+                
+                <Link to="/servicos/iptu/parcelamento" className="block">
+                  <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent/10 transition-colors">
+                    <Calendar className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-semibold">Parcelamento</h3>
+                      <p className="text-muted-foreground text-sm">Solicite parcelamento de débitos</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CreditCard className="w-5 h-5 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold">Histórico</h3>
-                    <p className="text-muted-foreground text-sm">Consulte o histórico de pagamentos</p>
+                </Link>
+                
+                <a 
+                  href="https://www.araguaina.to.gov.br/servicos/iptu/historico" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="block"
+                >
+                  <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent/10 transition-colors">
+                    <FileText className="w-5 h-5 text-primary mt-1" />
+                    <div>
+                      <h3 className="font-semibold">Histórico</h3>
+                      <p className="text-muted-foreground text-sm">Consulte o histórico de pagamentos</p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </CardContent>
           </Card>
@@ -87,6 +104,8 @@ const IPTUPage = () => {
               </Button>
             </CardContent>
           </Card>
+
+          <DigitalSignature />
         </div>
       </div>
     </div>

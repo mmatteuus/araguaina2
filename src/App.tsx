@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import IPTUPage from "./pages/services/IPTUPage";
+import IPTUConsultaPage from "./pages/services/iptu/IPTUConsultaPage";
+import IPTUEmissaoPage from "./pages/services/iptu/IPTUEmissaoPage";
+import IPTUParcelamentoPage from "./pages/services/iptu/IPTUParcelamentoPage";
 import ISSPage from "./pages/services/ISSPage";
 import NotaFiscalPage from "./pages/services/NotaFiscalPage";
 import ProtocoloPage from "./pages/services/ProtocoloPage";
@@ -41,6 +44,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/servicos/iptu" element={<IPTUPage />} />
+          <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
+          <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
+          <Route path="/servicos/iptu/parcelamento" element={<IPTUParcelamentoPage />} />
           <Route path="/servicos/iss" element={<ISSPage />} />
           <Route path="/servicos/nota-fiscal" element={<NotaFiscalPage />} />
           <Route path="/servicos/protocolo" element={<ProtocoloPage />} />
