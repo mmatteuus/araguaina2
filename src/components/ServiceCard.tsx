@@ -2,7 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
   ExternalLink, FileText, Users, Calendar, MapPin, CreditCard, Building, 
-  Shield, Eye, MessageSquare, AlertTriangle, Newspaper, GraduationCap, Building2
+  Shield, Eye, MessageSquare, AlertTriangle, Newspaper, GraduationCap, Building2,
+  BookOpen, DollarSign, UserCheck, ClipboardList, Car
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getServiceRoute } from "@/utils/serviceRoutes";
@@ -29,7 +30,12 @@ const getIconForService = (iconName: string) => {
     'AlertTriangle': <AlertTriangle className="w-8 h-8 text-primary" />,
     'Newspaper': <Newspaper className="w-8 h-8 text-primary" />,
     'GraduationCap': <GraduationCap className="w-8 h-8 text-primary" />,
-    'Building2': <Building2 className="w-8 h-8 text-primary" />
+    'Building2': <Building2 className="w-8 h-8 text-primary" />,
+    'BookOpen': <BookOpen className="w-8 h-8 text-primary" />,
+    'DollarSign': <DollarSign className="w-8 h-8 text-primary" />,
+    'UserCheck': <UserCheck className="w-8 h-8 text-primary" />,
+    'ClipboardList': <ClipboardList className="w-8 h-8 text-primary" />,
+    'Car': <Car className="w-8 h-8 text-primary" />
   };
   
   return iconMap[iconName] || <FileText className="w-8 h-8 text-primary" />;

@@ -58,8 +58,8 @@ export const services = [
   },
   {
     id: "8",
-    title: "Agendamento",
-    description: "Agendamento de atendimento",
+    title: "Agendamento Fazenda",
+    description: "Agendamento Secretaria da Fazenda",
     category: "Atendimento",
     icon: "Calendar"
   },
@@ -86,24 +86,24 @@ export const services = [
   },
   {
     id: "12",
-    title: "Mapa da Cidade",
-    description: "Localização de serviços",
-    category: "Informação",
-    icon: "MapPin"
-  },
-  {
-    id: "13",
     title: "MEI - Microempreendedor",
     description: "Cadastro MEI",
     category: "Empresarial",
     icon: "Users"
   },
   {
-    id: "14",
+    id: "13",
     title: "Consulta de Multas",
     description: "Multas de trânsito",
     category: "Trânsito",
     icon: "AlertTriangle"
+  },
+  {
+    id: "14",
+    title: "Infrações de Trânsito",
+    description: "Consulta infrações online",
+    category: "Trânsito",
+    icon: "Car"
   },
   {
     id: "15",
@@ -132,5 +132,33 @@ export const services = [
     description: "Normas municipais",
     category: "Legislação",
     icon: "Building2"
+  },
+  {
+    id: "19",
+    title: "Código de Postura",
+    description: "Regulamentos municipais",
+    category: "Legislação",
+    icon: "BookOpen"
+  },
+  {
+    id: "20",
+    title: "Créditos Tributários",
+    description: "Consulta créditos",
+    category: "Tributário",
+    icon: "DollarSign"
+  },
+  {
+    id: "21",
+    title: "Declaração de Cargos",
+    description: "Acumulação de cargos públicos",
+    category: "Servidor",
+    icon: "UserCheck"
+  },
+  {
+    id: "22",
+    title: "Declaração de Bens",
+    description: "Para posse em cargo público",
+    category: "Servidor",
+    icon: "ClipboardList"
   }
 ];
