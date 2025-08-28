@@ -17,6 +17,12 @@ import CertidoesPage from "./pages/services/CertidoesPage";
 import TransparenciaPage from "./pages/services/TransparenciaPage";
 import OuvidoriaPage from "./pages/services/OuvidoriaPage";
 import MapaPage from "./pages/services/MapaPage";
+import MEIPage from "./pages/services/MEIPage";
+import MultasPage from "./pages/services/MultasPage";
+import DiarioOficialPage from "./pages/services/DiarioOficialPage";
+import ContraChequePage from "./pages/services/ContraChequePage";
+import CreditoEducativoPage from "./pages/services/CreditoEducativoPage";
+import CodigoEdificacoesPage from "./pages/services/CodigoEdificacoesPage";
 
 const queryClient = new QueryClient();
 
@@ -37,9 +43,15 @@ const App = () => (
           <Route path="/servicos/processos" element={<ProcessosPage />} />
           <Route path="/servicos/agendamento" element={<AgendamentoPage />} />
           <Route path="/servicos/certidoes" element={<CertidoesPage />} />
-          <Route path="/servicos/transparencia" element={<TransparenciaPage />} />
-          <Route path="/servicos/ouvidoria" element={<OuvidoriaPage />} />
-          <Route path="/servicos/mapa" element={<MapaPage />} />
+        <Route path="/servicos/transparencia" element={<TransparenciaPage />} />
+        <Route path="/servicos/ouvidoria" element={<OuvidoriaPage />} />
+        <Route path="/servicos/mapa" element={<MapaPage />} />
+        <Route path="/servicos/mei" element={<MEIPage />} />
+        <Route path="/servicos/multas" element={<MultasPage />} />
+        <Route path="/servicos/diario-oficial" element={<DiarioOficialPage />} />
+        <Route path="/servicos/contra-cheque" element={<ContraChequePage />} />
+        <Route path="/servicos/credito-educativo" element={<CreditoEducativoPage />} />
+        <Route path="/servicos/codigo-edificacoes" element={<CodigoEdificacoesPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

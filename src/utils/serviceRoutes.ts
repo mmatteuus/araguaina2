@@ -11,7 +11,13 @@ export const getServiceRoute = (serviceId: string): string => {
     "9": "/servicos/certidoes",
     "10": "/servicos/transparencia",
     "11": "/servicos/ouvidoria",
-    "12": "/servicos/mapa"
+    "12": "/servicos/mapa",
+    "13": "/servicos/mei",
+    "14": "/servicos/multas",
+    "15": "/servicos/diario-oficial",
+    "16": "/servicos/contra-cheque", 
+    "17": "/servicos/credito-educativo",
+    "18": "/servicos/codigo-edificacoes"
   };
   
   return routes[serviceId] || "/";
