@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, FileText, Users, Calendar, MapPin, CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
+import { getServiceRoute } from "@/utils/serviceRoutes";
 
 interface Service {
   id: string;
@@ -55,15 +57,13 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
             asChild 
             className="w-full bg-gradient-primary hover:bg-primary/90 transition-all duration-200"
           >
-            <a 
-              href={service.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to={getServiceRoute(service.id)}
               className="flex items-center justify-center space-x-2"
             >
               <span>Acessar Serviço</span>
               <ExternalLink className="w-4 h-4" />
-            </a>
+            </Link>
           </Button>
         </div>
       </CardContent>
