@@ -9,6 +9,14 @@ import IPTUPage from "./pages/services/IPTUPage";
 import IPTUConsultaPage from "./pages/services/iptu/IPTUConsultaPage";
 import IPTUEmissaoPage from "./pages/services/iptu/IPTUEmissaoPage";
 import IPTUParcelamentoPage from "./pages/services/iptu/IPTUParcelamentoPage";
+import ISSConsultaPage from "./pages/services/iss/ISSConsultaPage";
+import ISSEmissaoPage from "./pages/services/iss/ISSEmissaoPage";
+import ISSCalculadoraPage from "./pages/services/iss/ISSCalculadoraPage";
+import NotaFiscalEmissaoPage from "./pages/services/notafiscal/NotaFiscalEmissaoPage";
+import NotaFiscalConsultaPage from "./pages/services/notafiscal/NotaFiscalConsultaPage";
+import MultasConsultaPage from "./pages/services/multas/MultasConsultaPage";
+import CertidaoNegativaPage from "./pages/services/certidoes/CertidaoNegativaPage";
+import ProtocoloConsultaPage from "./pages/services/protocolo/ProtocoloConsultaPage";
 import ISSPage from "./pages/services/ISSPage";
 import NotaFiscalPage from "./pages/services/NotaFiscalPage";
 import ProtocoloPage from "./pages/services/ProtocoloPage";
@@ -44,9 +52,17 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/servicos/iptu" element={<IPTUPage />} />
-          <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
-          <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
-          <Route path="/servicos/iptu/parcelamento" element={<IPTUParcelamentoPage />} />
+            <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
+            <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
+            <Route path="/servicos/iptu/parcelamento" element={<IPTUParcelamentoPage />} />
+            <Route path="/servicos/iss/consulta" element={<ISSConsultaPage />} />
+            <Route path="/servicos/iss/emissao" element={<ISSEmissaoPage />} />
+            <Route path="/servicos/iss/calculadora" element={<ISSCalculadoraPage />} />
+            <Route path="/servicos/nota-fiscal/emissao" element={<NotaFiscalEmissaoPage />} />
+            <Route path="/servicos/nota-fiscal/consulta" element={<NotaFiscalConsultaPage />} />
+            <Route path="/servicos/multas/consulta" element={<MultasConsultaPage />} />
+            <Route path="/servicos/certidoes/negativa" element={<CertidaoNegativaPage />} />
+            <Route path="/servicos/protocolo/consulta" element={<ProtocoloConsultaPage />} />
           <Route path="/servicos/iss" element={<ISSPage />} />
           <Route path="/servicos/nota-fiscal" element={<NotaFiscalPage />} />
           <Route path="/servicos/protocolo" element={<ProtocoloPage />} />
