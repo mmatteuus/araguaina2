@@ -160,5 +160,33 @@ export const services = [
     description: "Para posse em cargo público",
     category: "Servidor",
     icon: "ClipboardList"
+  },
+  {
+    id: "23",
+    title: "Taxa de Coleta de Lixo",
+    description: "Emissão de guias da taxa de lixo",
+    category: "Tributário",
+    icon: "Trash2"
+  },
+  {
+    id: "24",
+    title: "Licenciamento Ambiental",
+    description: "Licenciamento ambiental municipal",
+    category: "Licenças",
+    icon: "Leaf"
+  },
+  {
+    id: "25",
+    title: "Sistema de Consignações",
+    description: "Gestão de consignações",
+    category: "Servidor",
+    icon: "CreditCard"
+  },
+  {
+    id: "26",
+    title: "DAT - Declaração de Acidente",
+    description: "Declaração de acidente de trânsito",
+    category: "Trânsito",
+    icon: "AlertCircle"
   }
 ];

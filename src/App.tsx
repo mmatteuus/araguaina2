@@ -40,6 +40,10 @@ import CodigoPosturaPage from "./pages/services/CodigoPosturaPage";
 import CreditosTributariosPage from "./pages/services/CreditosTributariosPage";
 import DeclaracaoCargosPage from "./pages/services/DeclaracaoCargosPage";
 import DeclaracaoBensPage from "./pages/services/DeclaracaoBensPage";
+import TaxaLixoPage from "./pages/services/TaxaLixoPage";
+import LicenciamentoAmbientalPage from "./pages/services/LicenciamentoAmbientalPage";
+import ConsignacoesPage from "./pages/services/ConsignacoesPage";
+import DATPage from "./pages/services/DATPage";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +90,10 @@ const App = () => (
         <Route path="/servicos/creditos-tributarios" element={<CreditosTributariosPage />} />
         <Route path="/servicos/declaracao-cargos" element={<DeclaracaoCargosPage />} />
         <Route path="/servicos/declaracao-bens" element={<DeclaracaoBensPage />} />
+        <Route path="/servicos/taxa-lixo" element={<TaxaLixoPage />} />
+        <Route path="/servicos/licenciamento-ambiental" element={<LicenciamentoAmbientalPage />} />
+        <Route path="/servicos/consignacoes" element={<ConsignacoesPage />} />
+        <Route path="/servicos/dat" element={<DATPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
