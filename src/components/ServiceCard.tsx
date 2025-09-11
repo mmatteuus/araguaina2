@@ -67,14 +67,14 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         <div className="mt-auto">
           <Button 
             asChild 
-            className="w-full bg-gradient-primary hover:bg-primary hover:scale-105 hover:shadow-xl transition-all duration-300 transform hover:shadow-primary/30"
+            className="w-full bg-gradient-primary hover:bg-primary hover:scale-105 hover:shadow-xl transition-all duration-300 transform hover:shadow-primary/30 text-white font-semibold"
           >
             <Link 
               to={getServiceRoute(service.id)}
-              className="flex items-center justify-center space-x-2"
+              className="flex items-center justify-center space-x-2 text-white"
             >
-              <span>Acessar Serviço</span>
-              <ExternalLink className="w-4 h-4" />
+              <span className="text-white font-semibold">Acessar Serviço</span>
+              <ExternalLink className="w-4 h-4 text-white" />
             </Link>
           </Button>
         </div>

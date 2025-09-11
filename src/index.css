@@ -78,7 +78,7 @@ All colors MUST be HSL.
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -131,6 +131,35 @@ All colors MUST be HSL.
   .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
   .dark p, .dark span, .dark div, .dark label, .dark button {
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Blue background elements always have white text */
+  .bg-primary, .bg-primary *, 
+  .bg-gradient-primary, .bg-gradient-primary *,
+  [class*="bg-[#"]:has([class*="#003EDC"]), [class*="bg-[#"]:has([class*="#005EDC"]),
+  .bg-gradient-to-r, .bg-gradient-to-r *,
+  nav[class*="bg-gradient"], nav[class*="bg-gradient"] * {
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* Specific blue gradient backgrounds */
+  .bg-gradient-to-r.from-\[\#003EDC\], .bg-gradient-to-r.from-\[\#003EDC\] *,
+  .bg-gradient-to-r.to-\[\#005EDC\], .bg-gradient-to-r.to-\[\#005EDC\] * {
+    color: white !important;
+  }
+
+  /* Button with primary background should have white text */
+  button[class*="bg-primary"], button[class*="bg-primary"] *,
+  button[class*="bg-gradient"], button[class*="bg-gradient"] *,
+  a[class*="bg-primary"], a[class*="bg-primary"] *,
+  a[class*="bg-gradient"], a[class*="bg-gradient"] * {
+    color: white !important;
+  }
+
+  /* Primary foreground should be white on primary backgrounds */
+  .text-primary-foreground {
+    color: white !important;
   }
 
   /* Accessibility font sizes */
