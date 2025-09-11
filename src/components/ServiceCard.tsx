@@ -67,7 +67,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         <div className="mt-auto">
           <Button 
             asChild 
-            className="w-full bg-gradient-primary hover:bg-primary/90 transition-all duration-200"
+            className="w-full bg-gradient-primary hover:bg-primary hover:scale-105 hover:shadow-xl transition-all duration-300 transform hover:shadow-primary/30"
           >
             <Link 
               to={getServiceRoute(service.id)}
