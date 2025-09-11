@@ -18,27 +18,27 @@ interface Service {
 
 const getIconForService = (iconName: string) => {
   const iconMap: Record<string, JSX.Element> = {
-    'CreditCard': <CreditCard className="w-8 h-8 text-primary" />,
-    'Building': <Building className="w-8 h-8 text-primary" />,
-    'FileText': <FileText className="w-8 h-8 text-primary" />,
-    'Users': <Users className="w-8 h-8 text-primary" />,
-    'Shield': <Shield className="w-8 h-8 text-primary" />,
-    'Calendar': <Calendar className="w-8 h-8 text-primary" />,
-    'Eye': <Eye className="w-8 h-8 text-primary" />,
-    'MessageSquare': <MessageSquare className="w-8 h-8 text-primary" />,
-    'MapPin': <MapPin className="w-8 h-8 text-primary" />,
-    'AlertTriangle': <AlertTriangle className="w-8 h-8 text-primary" />,
-    'Newspaper': <Newspaper className="w-8 h-8 text-primary" />,
-    'GraduationCap': <GraduationCap className="w-8 h-8 text-primary" />,
-    'Building2': <Building2 className="w-8 h-8 text-primary" />,
-    'BookOpen': <BookOpen className="w-8 h-8 text-primary" />,
-    'DollarSign': <DollarSign className="w-8 h-8 text-primary" />,
-    'UserCheck': <UserCheck className="w-8 h-8 text-primary" />,
-    'ClipboardList': <ClipboardList className="w-8 h-8 text-primary" />,
-    'Car': <Car className="w-8 h-8 text-primary" />
+    'CreditCard': <CreditCard className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Building': <Building className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'FileText': <FileText className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Users': <Users className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Shield': <Shield className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Calendar': <Calendar className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Eye': <Eye className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'MessageSquare': <MessageSquare className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'MapPin': <MapPin className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'AlertTriangle': <AlertTriangle className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Newspaper': <Newspaper className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'GraduationCap': <GraduationCap className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Building2': <Building2 className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'BookOpen': <BookOpen className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'DollarSign': <DollarSign className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'UserCheck': <UserCheck className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'ClipboardList': <ClipboardList className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />,
+    'Car': <Car className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />
   };
   
-  return iconMap[iconName] || <FileText className="w-8 h-8 text-primary" />;
+  return iconMap[iconName] || <FileText className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-200" />;
 };
 
 interface ServiceCardProps {
@@ -47,20 +47,20 @@ interface ServiceCardProps {
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 h-full">
+    <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 h-full bg-muted hover:bg-gradient-primary">
       <CardContent className="p-6 flex flex-col h-full">
         <div className="flex items-center space-x-4 mb-4">
           <div className="flex-shrink-0">
             {getIconForService(service.icon)}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+            <h3 className="text-lg font-semibold text-foreground group-hover:text-white transition-colors duration-200 line-clamp-2">
               {service.title}
             </h3>
           </div>
         </div>
         
-        <p className="text-muted-foreground text-sm mb-6 flex-grow line-clamp-3">
+        <p className="text-muted-foreground group-hover:text-white/90 text-sm mb-6 flex-grow line-clamp-3 transition-colors duration-200">
           {service.description}
         </p>
         
