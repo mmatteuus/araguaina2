@@ -22,7 +22,7 @@ export const Navbar = () => {
           
           <div className="flex items-center space-x-2">
             <Button
-              variant="outline"
+              variant="accessibility"
               size="sm"
               onClick={increaseFontSize}
               className="text-xs px-2 py-1"
@@ -31,7 +31,7 @@ export const Navbar = () => {
               A+
             </Button>
             <Button
-              variant="outline"
+              variant="accessibility"
               size="sm"
               onClick={resetFontSize}
               className="text-xs px-2 py-1"
@@ -40,7 +40,7 @@ export const Navbar = () => {
               A
             </Button>
             <Button
-              variant="outline"
+              variant="accessibility"
               size="sm"
               onClick={decreaseFontSize}
               className="text-xs px-2 py-1"
@@ -49,7 +49,7 @@ export const Navbar = () => {
               A-
             </Button>
             <Button
-              variant={highContrast ? "default" : "outline"}
+              variant={highContrast ? "default" : "accessibility"}
               size="sm"
               onClick={toggleHighContrast}
               className="text-xs px-3 py-1"
