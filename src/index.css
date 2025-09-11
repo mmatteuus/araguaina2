@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 0 0% 100%;
     --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
@@ -17,40 +17,40 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    --primary: 210 100% 40%;
+    --primary: 225 100% 43%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 210 100% 85%;
-    --primary-dark: 210 100% 30%;
+    --primary-light: 217 100% 43%;
+    --primary-dark: 225 100% 43%;
 
-    --secondary: 140 50% 45%;
+    --secondary: 0 0% 60%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-light: 140 50% 85%;
+    --secondary-light: 0 0% 80%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 100% 50%;
+    --accent: 217 100% 43%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 210 100% 40%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 225 100% 43%;
 
     --radius: 0.75rem;
 
     /* Government theme colors */
-    --government-blue: 210 100% 40%;
+    --government-blue: 225 100% 43%;
     --government-green: 140 50% 45%;
-    --government-light: 210 20% 98%;
+    --government-light: 0 0% 100%;
     --government-dark: 215 25% 15%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(140 50% 35%));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-primary: linear-gradient(135deg, hsl(225 100% 43%), hsl(217 100% 43%));
+    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 60%), hsl(0 0% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(225 100% 43%), hsl(217 100% 43%));
 
     /* Accessibility */
     --font-size-normal: 1rem;
