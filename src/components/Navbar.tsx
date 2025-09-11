@@ -1,5 +1,3 @@
-import { NavbarAccessibilityButtons } from "@/components/NavbarAccessibilityButtons";
-
 export const Navbar = () => {
 
   return (
@@ -11,8 +9,6 @@ export const Navbar = () => {
               Prefeitura de Araguaína
             </h1>
           </div>
-          
-          <NavbarAccessibilityButtons />
         </div>
       </div>
     </nav>
