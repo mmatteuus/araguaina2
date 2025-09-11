@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { 
   ExternalLink, FileText, Users, Calendar, MapPin, CreditCard, Building, 
   Shield, Eye, MessageSquare, AlertTriangle, Newspaper, GraduationCap, Building2,
-  BookOpen, DollarSign, UserCheck, ClipboardList, Car
+  BookOpen, DollarSign, UserCheck, ClipboardList, Car, AlertCircle, CheckCircle,
+  Leaf, Droplets, Recycle, Activity, XCircle, Heart, Award, Map
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getServiceRoute } from "@/utils/serviceRoutes";
@@ -35,7 +36,17 @@ const getIconForService = (iconName: string) => {
     'DollarSign': <DollarSign className="w-8 h-8 text-primary" />,
     'UserCheck': <UserCheck className="w-8 h-8 text-primary" />,
     'ClipboardList': <ClipboardList className="w-8 h-8 text-primary" />,
-    'Car': <Car className="w-8 h-8 text-primary" />
+    'Car': <Car className="w-8 h-8 text-primary" />,
+    'AlertCircle': <AlertCircle className="w-8 h-8 text-primary" />,
+    'CheckCircle': <CheckCircle className="w-8 h-8 text-primary" />,
+    'Leaf': <Leaf className="w-8 h-8 text-primary" />,
+    'Droplets': <Droplets className="w-8 h-8 text-primary" />,
+    'Recycle': <Recycle className="w-8 h-8 text-primary" />,
+    'Activity': <Activity className="w-8 h-8 text-primary" />,
+    'XCircle': <XCircle className="w-8 h-8 text-primary" />,
+    'Heart': <Heart className="w-8 h-8 text-primary" />,
+    'Award': <Award className="w-8 h-8 text-primary" />,
+    'Map': <Map className="w-8 h-8 text-primary" />
   };
   
   return iconMap[iconName] || <FileText className="w-8 h-8 text-primary" />;

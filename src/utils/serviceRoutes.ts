@@ -25,7 +25,31 @@ export const getServiceRoute = (serviceId: string): string => {
     "23": "/servicos/taxa-lixo",
     "24": "/servicos/licenciamento-ambiental",
     "25": "/servicos/consignacoes",
-    "26": "/servicos/dat"
+    "26": "/servicos/dat",
+    "27": "/servicos/ccmei",
+    "28": "/servicos/fic",
+    "29": "/servicos/formularios-credito",
+    "30": "/servicos/arborizacao",
+    "31": "/servicos/pmae",
+    "32": "/servicos/gestao-residuos",
+    "33": "/servicos/leis-decretos",
+    "34": "/servicos/medidores-estudo",
+    "35": "/servicos/medidores-enderecos",
+    "36": "/servicos/validar-nfs-e",
+    "37": "/servicos/nfs-e",
+    "38": "/servicos/guia-alvara",
+    "39": "/servicos/dispensa-vistoria-bombeiros",
+    "40": "/servicos/atualizar-mei",
+    "41": "/servicos/baixa-mei",
+    "42": "/servicos/contra-cheque-impar",
+    "43": "/servicos/junta-medica",
+    "44": "/servicos/licenca-premio",
+    "45": "/servicos/licenca-ferias",
+    "46": "/servicos/requerimentos-diversos",
+    "47": "/servicos/licenca-aperfeicoamento",
+    "48": "/servicos/protocolo-servidor",
+    "49": "/servicos/sig",
+    "50": "/servicos/vtn"
   };
   
   return routes[serviceId] || "/";

@@ -188,5 +188,177 @@ export const services = [
     description: "Declaração de acidente de trânsito",
     category: "Trânsito",
     icon: "AlertCircle"
+  },
+  // Novos serviços - Cidadãos
+  {
+    id: "27",
+    title: "Emitir CCMEI",
+    description: "Certificado da Condição de Microempreendedor Individual",
+    category: "Empresarial",
+    icon: "FileText"
+  },
+  {
+    id: "28",
+    title: "FIC - Ficha de Informações Cadastrais",
+    description: "Formulário de informações cadastrais",
+    category: "Cadastral",
+    icon: "ClipboardList"
+  },
+  {
+    id: "29",
+    title: "Formulários Crédito Educativo",
+    description: "Formulários para crédito educativo",
+    category: "Educação",
+    icon: "GraduationCap"
+  },
+  {
+    id: "30",
+    title: "Plano de Arborização Urbana",
+    description: "Plano municipal de arborização",
+    category: "Ambiental",
+    icon: "Leaf"
+  },
+  {
+    id: "31",
+    title: "Plano Municipal de Água e Esgoto",
+    description: "PMAE - Documentos e informações",
+    category: "Infraestrutura",
+    icon: "Droplets"
+  },
+  {
+    id: "32",
+    title: "Plano de Gestão de Resíduos",
+    description: "Gestão integrada de resíduos sólidos",
+    category: "Ambiental",
+    icon: "Recycle"
+  },
+  {
+    id: "33",
+    title: "Leis, Decretos e Portarias",
+    description: "Legislação municipal completa",
+    category: "Legislação",
+    icon: "BookOpen"
+  },
+  {
+    id: "34",
+    title: "Medidores - Estudo Técnico",
+    description: "Estudo técnico dos medidores de velocidade",
+    category: "Trânsito",
+    icon: "Activity"
+  },
+  {
+    id: "35",
+    title: "Medidores - Lista de Endereços",
+    description: "Endereços dos medidores de velocidade",
+    category: "Trânsito",
+    icon: "MapPin"
+  },
+  // Novos serviços - Empresas
+  {
+    id: "36",
+    title: "Validação de NFS-e",
+    description: "Validar autenticidade de Nota Fiscal Eletrônica",
+    category: "Tributário",
+    icon: "CheckCircle"
+  },
+  {
+    id: "37",
+    title: "Emitir NFS-e",
+    description: "Emissão de Nota Fiscal Eletrônica",
+    category: "Tributário",
+    icon: "FileText"
+  },
+  {
+    id: "38",
+    title: "Guia do Alvará",
+    description: "Emitir guia de pagamento do alvará",
+    category: "Tributário",
+    icon: "CreditCard"
+  },
+  {
+    id: "39",
+    title: "Termo Dispensa Vistoria Bombeiros",
+    description: "Termo de dispensa da vistoria do Corpo de Bombeiros",
+    category: "Licenças",
+    icon: "Shield"
+  },
+  {
+    id: "40",
+    title: "Atualizar Dados MEI",
+    description: "Atualização de dados cadastrais do MEI",
+    category: "Empresarial",
+    icon: "UserCheck"
+  },
+  {
+    id: "41",
+    title: "Baixa do MEI",
+    description: "Cancelamento do CNPJ MEI",
+    category: "Empresarial",
+    icon: "XCircle"
+  },
+  // Novos serviços - Servidores
+  {
+    id: "42",
+    title: "Contra Cheque IMPAR",
+    description: "Sistema IMPAR para contra cheque",
+    category: "Servidor",
+    icon: "FileText"
+  },
+  {
+    id: "43",
+    title: "Formulário Junta Médica",
+    description: "Formulário para junta médica",
+    category: "Servidor",
+    icon: "Heart"
+  },
+  {
+    id: "44",
+    title: "Formulário Licença Prêmio",
+    description: "Licença prêmio para servidores",
+    category: "Servidor",
+    icon: "Award"
+  },
+  {
+    id: "45",
+    title: "Formulário Férias e LIP",
+    description: "Férias e Licença Interesse Particular",
+    category: "Servidor",
+    icon: "Calendar"
+  },
+  {
+    id: "46",
+    title: "Requerimentos Diversos (RD)",
+    description: "Formulário de requerimentos diversos",
+    category: "Servidor",
+    icon: "ClipboardList"
+  },
+  {
+    id: "47",
+    title: "Licença Aperfeiçoamento",
+    description: "Formulário de licença para aperfeiçoamento",
+    category: "Servidor",
+    icon: "GraduationCap"
+  },
+  {
+    id: "48",
+    title: "Sistema Protocolo Servidor",
+    description: "Sistema de protocolo para servidores",
+    category: "Servidor",
+    icon: "Users"
+  },
+  // Órgãos / Geral
+  {
+    id: "49",
+    title: "Sistema SIG",
+    description: "Sistema de Informações Geográficas",
+    category: "Tecnologia",
+    icon: "Map"
+  },
+  {
+    id: "50",
+    title: "Valores de Terra Nua (VTN)",
+    description: "Tabela de valores de terra nua",
+    category: "Tributário",
+    icon: "MapPin"
   }
 ];

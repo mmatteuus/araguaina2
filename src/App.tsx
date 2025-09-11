@@ -47,6 +47,24 @@ import TaxaLixoPage from "./pages/services/TaxaLixoPage";
 import LicenciamentoAmbientalPage from "./pages/services/LicenciamentoAmbientalPage";
 import ConsignacoesPage from "./pages/services/ConsignacoesPage";
 import DATPage from "./pages/services/DATPage";
+import CCMEIPage from "./pages/services/CCMEIPage";
+import FICPage from "./pages/services/FICPage";
+import FormulariosCreditoPage from "./pages/services/FormulariosCreditoPage";
+import ArborizacaoPage from "./pages/services/ArborizacaoPage";
+import PMAEPage from "./pages/services/PMAEPage";
+import GestaoResiduosPage from "./pages/services/GestaoResiduosPage";
+import LeisDecretosPage from "./pages/services/LeisDecretosPage";
+import MedidoresEstudoPage from "./pages/services/MedidoresEstudoPage";
+import MedidoresEnderecosPage from "./pages/services/MedidoresEnderecosPage";
+import ValidarNFSePage from "./pages/services/ValidarNFSePage";
+import NFSEPage from "./pages/services/NFSEPage";
+import GuiaAlvaraPage from "./pages/services/GuiaAlvaraPage";
+import DispensaVistoriaBombeirosPage from "./pages/services/DispensaVistoriaBombeirosPage";
+import AtualizarMEIPage from "./pages/services/AtualizarMEIPage";
+import BaixaMEIPage from "./pages/services/BaixaMEIPage";
+import ContraChequeIMPARPage from "./pages/services/ContraChequeIMPARPage";
+import JuntaMedicaPage from "./pages/services/JuntaMedicaPage";
+import SIGPage from "./pages/services/SIGPage";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +116,24 @@ const App = () => (
               <Route path="/servicos/licenciamento-ambiental" element={<LicenciamentoAmbientalPage />} />
               <Route path="/servicos/consignacoes" element={<ConsignacoesPage />} />
               <Route path="/servicos/dat" element={<DATPage />} />
+              <Route path="/servicos/ccmei" element={<CCMEIPage />} />
+              <Route path="/servicos/fic" element={<FICPage />} />
+              <Route path="/servicos/formularios-credito" element={<FormulariosCreditoPage />} />
+              <Route path="/servicos/arborizacao" element={<ArborizacaoPage />} />
+              <Route path="/servicos/pmae" element={<PMAEPage />} />
+              <Route path="/servicos/gestao-residuos" element={<GestaoResiduosPage />} />
+              <Route path="/servicos/leis-decretos" element={<LeisDecretosPage />} />
+              <Route path="/servicos/medidores-estudo" element={<MedidoresEstudoPage />} />
+              <Route path="/servicos/medidores-enderecos" element={<MedidoresEnderecosPage />} />
+              <Route path="/servicos/validar-nfs-e" element={<ValidarNFSePage />} />
+              <Route path="/servicos/nfs-e" element={<NFSEPage />} />
+              <Route path="/servicos/guia-alvara" element={<GuiaAlvaraPage />} />
+              <Route path="/servicos/dispensa-vistoria-bombeiros" element={<DispensaVistoriaBombeirosPage />} />
+              <Route path="/servicos/atualizar-mei" element={<AtualizarMEIPage />} />
+              <Route path="/servicos/baixa-mei" element={<BaixaMEIPage />} />
+              <Route path="/servicos/contra-cheque-impar" element={<ContraChequeIMPARPage />} />
+              <Route path="/servicos/junta-medica" element={<JuntaMedicaPage />} />
+              <Route path="/servicos/sig" element={<SIGPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
