@@ -10,7 +10,7 @@ const ConsignacoesPage = () => {
       <div className="container mx-auto px-4 py-8">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
+          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
           Voltar para Serviços

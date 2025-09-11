@@ -30,7 +30,7 @@ const NotaFiscalConsultaPage = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6">
-          <Link to="/servicos/nota-fiscal" className="inline-flex items-center text-muted-foreground hover:text-foreground">
+          <Link to="/servicos/nota-fiscal" className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar para Nota Fiscal
           </Link>
