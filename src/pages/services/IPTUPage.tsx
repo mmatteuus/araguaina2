@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreditCard, ArrowLeft, ExternalLink, FileText, Calculator, Calendar, Search, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
+import DigitalSignature from "@/components/DigitalSignature";
 const IPTUPage = () => {
   return <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -89,6 +90,8 @@ const IPTUPage = () => {
               </Button>
             </CardContent>
           </Card>
+
+          <DigitalSignature />
         </div>
       </div>
     </div>;
