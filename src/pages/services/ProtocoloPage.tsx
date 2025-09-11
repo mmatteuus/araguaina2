@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, ArrowLeft, ExternalLink, FileText, Search, Plus, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 
 const ProtocoloPage = () => {
   return (
@@ -89,6 +90,7 @@ const ProtocoloPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertTriangle, ArrowLeft, ExternalLink, Search, CreditCard, FileText, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 
 const MultasPage = () => {
   return (
@@ -89,6 +90,7 @@ const MultasPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

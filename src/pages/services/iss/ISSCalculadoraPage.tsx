@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Calculator, FileText, AlertCircle, Info } from "lucide-react";
 import { Link } from "react-router-dom";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 import { useState } from "react";
 
 const ISSCalculadoraPage = () => {
@@ -168,7 +168,7 @@ const ISSCalculadoraPage = () => {
             </CardContent>
           </Card>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

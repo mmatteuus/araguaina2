@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, ArrowLeft, ExternalLink, Building, FileText, Clock, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 
 const AlvaraPage = () => {
   return (
@@ -89,6 +90,7 @@ const AlvaraPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

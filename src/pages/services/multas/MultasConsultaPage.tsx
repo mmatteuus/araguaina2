@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Search, FileText, AlertCircle, Car } from "lucide-react";
 import { Link } from "react-router-dom";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 import { useState } from "react";
 
 const MultasConsultaPage = () => {
@@ -140,7 +140,7 @@ const MultasConsultaPage = () => {
             </CardContent>
           </Card>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreditCard, ArrowLeft, ExternalLink, FileText, Building, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 
 const ISSPage = () => {
   return (
@@ -89,6 +90,7 @@ const ISSPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

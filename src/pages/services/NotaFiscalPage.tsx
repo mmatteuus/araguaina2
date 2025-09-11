@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, ArrowLeft, ExternalLink, Download, Search, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 
 const NotaFiscalPage = () => {
   return (
@@ -89,6 +90,7 @@ const NotaFiscalPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
