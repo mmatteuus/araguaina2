@@ -3,11 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, ArrowLeft, ExternalLink, Clock, MapPin, Users, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
+import { NavbarAccessibilityButtons } from "@/components/NavbarAccessibilityButtons";
 
 const AgendamentoPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
+        <NavbarAccessibilityButtons />
         <div className="mb-6">
           <Link to="/" className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
