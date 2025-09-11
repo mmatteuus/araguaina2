@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+import AccessibilityButtons from "@/components/AccessibilityButtons";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import IPTUPage from "./pages/services/IPTUPage";
@@ -55,6 +56,7 @@ const App = () => (
       <TooltipProvider>
         <AccessibilityProvider>
           <BrowserRouter>
+            <AccessibilityButtons />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/servicos/iptu" element={<IPTUPage />} />
