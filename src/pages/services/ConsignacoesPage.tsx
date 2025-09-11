@@ -84,7 +84,7 @@ const ConsignacoesPage = () => {
           </Card>
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <Card className="p-6 text-center">
+            <Card>
               <h3 className="text-xl font-semibold mb-4">Acessar Sistema</h3>
               <p className="text-muted-foreground mb-6">
                 Entre no sistema de consignações
@@ -99,7 +99,7 @@ const ConsignacoesPage = () => {
               </Button>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card>
               <h3 className="text-xl font-semibold mb-4">Guia do Sistema</h3>
               <p className="text-muted-foreground mb-6">
                 Manual de utilização do sistema

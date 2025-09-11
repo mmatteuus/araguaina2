@@ -69,7 +69,7 @@ const OuvidoriaPage = () => {
           </Card>
 
           <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="p-6 text-center">
+            <CardContent>
               <h3 className="text-lg font-semibold mb-2">Fazer Manifestação</h3>
               <p className="text-muted-foreground mb-4">
                 Sua opinião é importante para melhorar os serviços municipais

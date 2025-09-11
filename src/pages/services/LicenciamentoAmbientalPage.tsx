@@ -87,7 +87,7 @@ const LicenciamentoAmbientalPage = () => {
             </div>
           </Card>
 
-          <Card className="p-6 text-center">
+          <Card>
             <h3 className="text-xl font-semibold mb-4">Acessar Sistema de Licenciamento</h3>
             <p className="text-muted-foreground mb-6">
               Entre no sistema oficial para iniciar seu processo de licenciamento ambiental

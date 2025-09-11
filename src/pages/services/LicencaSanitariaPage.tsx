@@ -69,7 +69,7 @@ const LicencaSanitariaPage = () => {
           </Card>
 
           <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="p-6 text-center">
+            <CardContent>
               <h3 className="text-lg font-semibold mb-2">Solicitar Licença Sanitária</h3>
               <p className="text-muted-foreground mb-4">
                 Acesse o portal oficial para solicitar sua licença

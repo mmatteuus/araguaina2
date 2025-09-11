@@ -89,7 +89,7 @@ const DATPage = () => {
           </Card>
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <Card className="p-6 text-center">
+            <Card>
               <h3 className="text-xl font-semibold mb-4">Emergências</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-red-50 dark:bg-red-950/20 rounded-lg">
@@ -109,7 +109,7 @@ const DATPage = () => {
               </div>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card>
               <h3 className="text-xl font-semibold mb-4">Acessar Sistema DAT</h3>
               <p className="text-muted-foreground mb-6">
                 Registre seu acidente de trânsito online
