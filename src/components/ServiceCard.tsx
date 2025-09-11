@@ -54,13 +54,13 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
             {getIconForService(service.icon)}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white group-hover:text-primary transition-colors duration-200 line-clamp-2">
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
               {service.title}
             </h3>
           </div>
         </div>
         
-        <p className="text-gray-600 dark:text-gray-300 text-sm font-medium mb-6 flex-grow line-clamp-3">
+        <p className="text-foreground text-sm font-semibold mb-6 flex-grow line-clamp-3">
           {service.description}
         </p>
         

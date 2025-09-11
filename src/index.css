@@ -9,13 +9,13 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    --foreground: 215 25% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 215 25% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 215 25% 10%;
 
     --primary: 225 100% 43%;
     --primary-foreground: 0 0% 100%;
@@ -45,7 +45,7 @@ All colors MUST be HSL.
     --government-blue: 225 100% 43%;
     --government-green: 140 50% 45%;
     --government-light: 0 0% 100%;
-    --government-dark: 215 25% 15%;
+    --government-dark: 215 25% 10%;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(225 100% 43%), hsl(217 100% 43%));
@@ -112,7 +112,25 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-semibold;
+  }
+
+  /* Global text enhancement for better visibility */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    color: hsl(var(--foreground)) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  p, span, div, label, button {
+    @apply font-medium;
+    color: hsl(var(--foreground)) !important;
+  }
+
+  /* Enhanced contrast for better readability */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
+  .dark p, .dark span, .dark div, .dark label, .dark button {
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
   }
 
   /* Accessibility font sizes */

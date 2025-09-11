@@ -17,7 +17,7 @@ const Index = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 bg-gradient-hero bg-clip-text text-transparent">
                 Serviços Online
               </h1>
-              <p className="text-xl font-semibold text-gray-800 dark:text-white max-w-2xl mx-auto">
+              <p className="text-xl font-bold text-foreground max-w-2xl mx-auto">
                 Acesse os serviços da Prefeitura de Araguaína de forma rápida e segura
               </p>
             </div>
@@ -34,7 +34,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <DigitalSignature />
             <div className="text-center mt-8">
-              <p className="text-muted-foreground text-sm">
+              <p className="text-foreground font-semibold text-sm">
                 <a 
                   href="https://api.whatsapp.com/send/?phone=5563992476987&text=Olá,%20vi%20seu%20projeto%20e%20quero%20saber%20mais"
                   target="_blank"
