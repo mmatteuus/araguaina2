@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import IPTUPage from "./pages/services/IPTUPage";
@@ -50,54 +51,56 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/servicos/iptu" element={<IPTUPage />} />
-            <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
-            <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
-            <Route path="/servicos/iptu/parcelamento" element={<IPTUParcelamentoPage />} />
-            <Route path="/servicos/iss/consulta" element={<ISSConsultaPage />} />
-            <Route path="/servicos/iss/emissao" element={<ISSEmissaoPage />} />
-            <Route path="/servicos/iss/calculadora" element={<ISSCalculadoraPage />} />
-            <Route path="/servicos/nota-fiscal/emissao" element={<NotaFiscalEmissaoPage />} />
-            <Route path="/servicos/nota-fiscal/consulta" element={<NotaFiscalConsultaPage />} />
-            <Route path="/servicos/multas/consulta" element={<MultasConsultaPage />} />
-            <Route path="/servicos/certidoes/negativa" element={<CertidaoNegativaPage />} />
-            <Route path="/servicos/protocolo/consulta" element={<ProtocoloConsultaPage />} />
-          <Route path="/servicos/iss" element={<ISSPage />} />
-          <Route path="/servicos/nota-fiscal" element={<NotaFiscalPage />} />
-          <Route path="/servicos/protocolo" element={<ProtocoloPage />} />
-          <Route path="/servicos/licenca-sanitaria" element={<LicencaSanitariaPage />} />
-          <Route path="/servicos/alvara" element={<AlvaraPage />} />
-          <Route path="/servicos/processos" element={<ProcessosPage />} />
-          <Route path="/servicos/agendamento" element={<AgendamentoPage />} />
-          <Route path="/servicos/certidoes" element={<CertidoesPage />} />
-        <Route path="/servicos/transparencia" element={<TransparenciaPage />} />
-        <Route path="/servicos/ouvidoria" element={<OuvidoriaPage />} />
-        <Route path="/servicos/mapa" element={<MapaPage />} />
-        <Route path="/servicos/mei" element={<MEIPage />} />
-        <Route path="/servicos/multas" element={<MultasPage />} />
-        <Route path="/servicos/diario-oficial" element={<DiarioOficialPage />} />
-        <Route path="/servicos/contra-cheque" element={<ContraChequePage />} />
-        <Route path="/servicos/credito-educativo" element={<CreditoEducativoPage />} />
-        <Route path="/servicos/codigo-edificacoes" element={<CodigoEdificacoesPage />} />
-        <Route path="/servicos/agendamento-fazenda" element={<AgendamentoFazendaPage />} />
-        <Route path="/servicos/infracoes-transito" element={<InfracoesTransitoPage />} />
-        <Route path="/servicos/codigo-postura" element={<CodigoPosturaPage />} />
-        <Route path="/servicos/creditos-tributarios" element={<CreditosTributariosPage />} />
-        <Route path="/servicos/declaracao-cargos" element={<DeclaracaoCargosPage />} />
-        <Route path="/servicos/declaracao-bens" element={<DeclaracaoBensPage />} />
-        <Route path="/servicos/taxa-lixo" element={<TaxaLixoPage />} />
-        <Route path="/servicos/licenciamento-ambiental" element={<LicenciamentoAmbientalPage />} />
-        <Route path="/servicos/consignacoes" element={<ConsignacoesPage />} />
-        <Route path="/servicos/dat" element={<DATPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AccessibilityProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/servicos/iptu" element={<IPTUPage />} />
+              <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
+              <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
+              <Route path="/servicos/iptu/parcelamento" element={<IPTUParcelamentoPage />} />
+              <Route path="/servicos/iss/consulta" element={<ISSConsultaPage />} />
+              <Route path="/servicos/iss/emissao" element={<ISSEmissaoPage />} />
+              <Route path="/servicos/iss/calculadora" element={<ISSCalculadoraPage />} />
+              <Route path="/servicos/nota-fiscal/emissao" element={<NotaFiscalEmissaoPage />} />
+              <Route path="/servicos/nota-fiscal/consulta" element={<NotaFiscalConsultaPage />} />
+              <Route path="/servicos/multas/consulta" element={<MultasConsultaPage />} />
+              <Route path="/servicos/certidoes/negativa" element={<CertidaoNegativaPage />} />
+              <Route path="/servicos/protocolo/consulta" element={<ProtocoloConsultaPage />} />
+            <Route path="/servicos/iss" element={<ISSPage />} />
+            <Route path="/servicos/nota-fiscal" element={<NotaFiscalPage />} />
+            <Route path="/servicos/protocolo" element={<ProtocoloPage />} />
+            <Route path="/servicos/licenca-sanitaria" element={<LicencaSanitariaPage />} />
+            <Route path="/servicos/alvara" element={<AlvaraPage />} />
+            <Route path="/servicos/processos" element={<ProcessosPage />} />
+            <Route path="/servicos/agendamento" element={<AgendamentoPage />} />
+            <Route path="/servicos/certidoes" element={<CertidoesPage />} />
+          <Route path="/servicos/transparencia" element={<TransparenciaPage />} />
+          <Route path="/servicos/ouvidoria" element={<OuvidoriaPage />} />
+          <Route path="/servicos/mapa" element={<MapaPage />} />
+          <Route path="/servicos/mei" element={<MEIPage />} />
+          <Route path="/servicos/multas" element={<MultasPage />} />
+          <Route path="/servicos/diario-oficial" element={<DiarioOficialPage />} />
+          <Route path="/servicos/contra-cheque" element={<ContraChequePage />} />
+          <Route path="/servicos/credito-educativo" element={<CreditoEducativoPage />} />
+          <Route path="/servicos/codigo-edificacoes" element={<CodigoEdificacoesPage />} />
+          <Route path="/servicos/agendamento-fazenda" element={<AgendamentoFazendaPage />} />
+          <Route path="/servicos/infracoes-transito" element={<InfracoesTransitoPage />} />
+          <Route path="/servicos/codigo-postura" element={<CodigoPosturaPage />} />
+          <Route path="/servicos/creditos-tributarios" element={<CreditosTributariosPage />} />
+          <Route path="/servicos/declaracao-cargos" element={<DeclaracaoCargosPage />} />
+          <Route path="/servicos/declaracao-bens" element={<DeclaracaoBensPage />} />
+          <Route path="/servicos/taxa-lixo" element={<TaxaLixoPage />} />
+          <Route path="/servicos/licenciamento-ambiental" element={<LicenciamentoAmbientalPage />} />
+          <Route path="/servicos/consignacoes" element={<ConsignacoesPage />} />
+          <Route path="/servicos/dat" element={<DATPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AccessibilityProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
