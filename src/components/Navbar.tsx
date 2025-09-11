@@ -1,14 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useAccessibility } from "@/contexts/AccessibilityContext";
+import { NavbarAccessibilityButtons } from "@/components/NavbarAccessibilityButtons";
 
 export const Navbar = () => {
-  const {
-    increaseFontSize,
-    decreaseFontSize,
-    resetFontSize,
-    toggleHighContrast,
-    highContrast
-  } = useAccessibility();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#003EDC] to-[#005EDC] border-b shadow-sm">
@@ -20,44 +12,7 @@ export const Navbar = () => {
             </h1>
           </div>
           
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="accessibility"
-              size="sm"
-              onClick={increaseFontSize}
-              className="text-xs px-2 py-1"
-              aria-label="Aumentar tamanho da fonte"
-            >
-              A+
-            </Button>
-            <Button
-              variant="accessibility"
-              size="sm"
-              onClick={resetFontSize}
-              className="text-xs px-2 py-1"
-              aria-label="Tamanho normal da fonte"
-            >
-              A
-            </Button>
-            <Button
-              variant="accessibility"
-              size="sm"
-              onClick={decreaseFontSize}
-              className="text-xs px-2 py-1"
-              aria-label="Diminuir tamanho da fonte"
-            >
-              A-
-            </Button>
-            <Button
-              variant={highContrast ? "default" : "accessibility"}
-              size="sm"
-              onClick={toggleHighContrast}
-              className="text-xs px-3 py-1"
-              aria-label="Alternar alto contraste"
-            >
-              Alto Contraste
-            </Button>
-          </div>
+          <NavbarAccessibilityButtons />
         </div>
       </div>
     </nav>
