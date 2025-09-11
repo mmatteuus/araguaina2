@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
+import { NavbarAccessibilityButtons } from "@/components/NavbarAccessibilityButtons";
 
 const DATPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto px-4 py-8">
-        <Link 
+        <NavbarAccessibilityButtons />
+        <Link
           to="/" 
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors mb-6"
         >
