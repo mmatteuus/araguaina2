@@ -64,6 +64,12 @@ import AtualizarMEIPage from "./pages/services/AtualizarMEIPage";
 import BaixaMEIPage from "./pages/services/BaixaMEIPage";
 import ContraChequeIMPARPage from "./pages/services/ContraChequeIMPARPage";
 import JuntaMedicaPage from "./pages/services/JuntaMedicaPage";
+import LicencaPremioPage from "./pages/services/LicencaPremioPage";
+import LicencaFeriasPage from "./pages/services/LicencaFeriasPage";
+import RequerimentosDiversosPage from "./pages/services/RequerimentosDiversosPage";
+import LicencaAperfeicoamentoPage from "./pages/services/LicencaAperfeicoamentoPage";
+import ProtocoloServidorPage from "./pages/services/ProtocoloServidorPage";
+import VTNPage from "./pages/services/VTNPage";
 import SIGPage from "./pages/services/SIGPage";
 
 const queryClient = new QueryClient();
@@ -131,9 +137,15 @@ const App = () => (
               <Route path="/servicos/dispensa-vistoria-bombeiros" element={<DispensaVistoriaBombeirosPage />} />
               <Route path="/servicos/atualizar-mei" element={<AtualizarMEIPage />} />
               <Route path="/servicos/baixa-mei" element={<BaixaMEIPage />} />
-              <Route path="/servicos/contra-cheque-impar" element={<ContraChequeIMPARPage />} />
-              <Route path="/servicos/junta-medica" element={<JuntaMedicaPage />} />
-              <Route path="/servicos/sig" element={<SIGPage />} />
+            <Route path="/servicos/contra-cheque-impar" element={<ContraChequeIMPARPage />} />
+            <Route path="/servicos/junta-medica" element={<JuntaMedicaPage />} />
+            <Route path="/servicos/licenca-premio" element={<LicencaPremioPage />} />
+            <Route path="/servicos/licenca-ferias" element={<LicencaFeriasPage />} />
+            <Route path="/servicos/requerimentos-diversos" element={<RequerimentosDiversosPage />} />
+            <Route path="/servicos/licenca-aperfeicoamento" element={<LicencaAperfeicoamentoPage />} />
+            <Route path="/servicos/protocolo-servidor" element={<ProtocoloServidorPage />} />
+            <Route path="/servicos/vtn" element={<VTNPage />} />
+            <Route path="/servicos/sig" element={<SIGPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
