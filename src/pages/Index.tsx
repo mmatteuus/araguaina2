@@ -17,7 +17,7 @@ const Index = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 bg-gradient-hero bg-clip-text text-transparent">
                 Serviços Online
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-xl font-semibold text-gray-800 dark:text-white max-w-2xl mx-auto">
                 Acesse os serviços da Prefeitura de Araguaína de forma rápida e segura
               </p>
             </div>
