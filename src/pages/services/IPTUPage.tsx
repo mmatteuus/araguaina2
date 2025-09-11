@@ -2,16 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreditCard, ArrowLeft, ExternalLink, FileText, Calculator, Calendar, Search, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Footer } from "@/components/Footer";
-import { NavbarAccessibilityButtons } from "@/components/NavbarAccessibilityButtons";
-
+import DigitalSignature from "@/components/DigitalSignature";
 const IPTUPage = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <NavbarAccessibilityButtons />
         <div className="mb-6">
-          <Link to="/" className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors">
+          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar aos Serviços
           </Link>
@@ -69,12 +65,7 @@ const IPTUPage = () => {
                   </div>
                 </Link>
                 
-                <a 
-                  href="https://www.araguaina.to.gov.br/servicos/iptu/historico" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="block"
-                >
+                <a href="https://www.araguaina.to.gov.br/servicos/iptu/historico" target="_blank" rel="noopener noreferrer" className="block">
                   <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent/10 transition-colors">
                     <FileText className="w-5 h-5 text-primary mt-1" />
                     <div>
@@ -88,32 +79,21 @@ const IPTUPage = () => {
           </Card>
 
           <Card className="bg-primary/5 border-primary/20">
-            <CardContent>
-              <h3 className="text-lg font-semibold mb-2 text-center">Pronto para acessar o serviço?</h3>
-              <p className="text-muted-foreground mb-4 text-center">
-                Você será redirecionado para o portal oficial da Prefeitura de Araguaína
-              </p>
-              <div className="text-center">
-                <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
-                  <a 
-                    href="https://www.araguaina.to.gov.br/servicos/iptu" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2"
-                  >
-                    <span>Acessar IPTU Online</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
-              </div>
+            <CardContent className="p-6 text-center">
+              
+              
+              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+                <a href="https://www.araguaina.to.gov.br/servicos/iptu" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+                  <span>Acessar IPTU Online</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Button>
             </CardContent>
           </Card>
 
-          <Footer />
+          <DigitalSignature />
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default IPTUPage;
