@@ -2,7 +2,7 @@ import { ArrowLeft, CreditCard, AlertCircle, ExternalLink, FileText, Calculator,
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 
 const ConsignacoesPage = () => {
   return (
@@ -116,7 +116,7 @@ const ConsignacoesPage = () => {
             </Card>
           </div>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

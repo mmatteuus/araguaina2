@@ -2,7 +2,7 @@ import { ArrowLeft, AlertCircle, ExternalLink, FileText, Car, Phone } from "luci
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 
 const DATPage = () => {
   return (
@@ -125,7 +125,7 @@ const DATPage = () => {
             </Card>
           </div>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

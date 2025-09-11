@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, FileCheck, FileText, AlertCircle, Download } from "lucide-react";
 import { Link } from "react-router-dom";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 import { useState } from "react";
 
 const CertidaoNegativaPage = () => {
@@ -158,7 +158,7 @@ const CertidaoNegativaPage = () => {
             </CardContent>
           </Card>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

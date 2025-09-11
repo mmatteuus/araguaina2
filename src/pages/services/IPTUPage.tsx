@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreditCard, ArrowLeft, ExternalLink, FileText, Calculator, Calendar, Search, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 
 const IPTUPage = () => {
   return (
@@ -105,7 +105,7 @@ const IPTUPage = () => {
             </CardContent>
           </Card>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

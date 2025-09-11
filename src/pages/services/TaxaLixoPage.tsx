@@ -2,7 +2,7 @@ import { ArrowLeft, Trash2, AlertCircle, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import DigitalSignature from "@/components/DigitalSignature";
+import { Footer } from "@/components/Footer";
 
 const TaxaLixoPage = () => {
   return (
@@ -77,7 +77,7 @@ const TaxaLixoPage = () => {
             </Button>
           </Card>
 
-          <DigitalSignature />
+          <Footer />
         </div>
       </div>
     </div>

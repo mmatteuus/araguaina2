@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, ArrowLeft, ExternalLink, Clock, MapPin, Users, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
 
 const AgendamentoPage = () => {
   return (
@@ -89,6 +90,7 @@ const AgendamentoPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
