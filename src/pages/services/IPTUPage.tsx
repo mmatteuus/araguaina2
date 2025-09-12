@@ -92,7 +92,7 @@ const IPTUPage = () => {
                 Você será redirecionado para o portal oficial da Prefeitura de Araguaína
               </p>
               <div className="text-center">
-                <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+                <Button asChild size="lg" variant="primaryGradient">
                   <a 
                     href="https://www.araguaina.to.gov.br/servicos/iptu" 
                     target="_blank" 

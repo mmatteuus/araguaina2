@@ -97,7 +97,7 @@ const Buscar = () => {
                       </div>
                     </div>
                     <div className="mt-auto">
-                      <Button asChild className="w-full bg-gradient-primary text-white font-semibold">
+                      <Button asChild variant="primaryGradient" className="w-full">
                         <Link to={`/servicos/${serv.slug}`}>Acessar</Link>
                       </Button>
                     </div>
@@ -114,4 +114,3 @@ const Buscar = () => {
 };
 
 export default Buscar;
-

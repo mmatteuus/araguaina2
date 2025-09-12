@@ -41,7 +41,7 @@ const Categorias = () => {
                     </h3>
                   </div>
                   <div className="mt-auto">
-                    <Button asChild className="w-full bg-gradient-primary hover:bg-primary hover:scale-105 hover:shadow-xl transition-all duration-300 transform hover:shadow-primary/30 text-white font-semibold">
+                    <Button asChild variant="primaryGradient" className="w-full hover:scale-105">
                       <Link to={`/categorias/${cat.id}`} className="flex items-center justify-center space-x-2 text-white">
                         <span className="text-white font-semibold">Acessar</span>
                       </Link>
@@ -78,7 +78,7 @@ const Categorias = () => {
                         {s.description}
                       </p>
                       <div className="mt-auto">
-                        <Button asChild className="w-full bg-gradient-primary hover:bg-primary text-white font-semibold">
+                        <Button asChild variant="primaryGradient" className="w-full">
                           <Link to={`/categorias/${catId}`}>Ir para a categoria</Link>
                         </Button>
                       </div>

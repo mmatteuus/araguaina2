@@ -85,7 +85,7 @@ const ServicoDetalhe = () => {
               )}
 
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button asChild className="bg-gradient-primary hover:bg-primary text-white font-semibold">
+                <Button asChild variant="primaryGradient">
                   <a href={primaryHref} target={primaryTarget} rel={primaryTarget ? "noopener noreferrer" : undefined}>
                     Ir para o serviço
                   </a>
@@ -113,4 +113,3 @@ const ServicoDetalhe = () => {
 };
 
 export default ServicoDetalhe;
-
