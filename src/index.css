@@ -178,4 +178,40 @@ All colors MUST be HSL.
   }
 
   
+  /* Accessibility font sizes */
+  .font-size-normal { font-size: 1rem; }
+  .font-size-large { font-size: 1.125rem; }
+  .font-size-large * { font-size: inherit !important; }
+  .font-size-xlarge { font-size: 1.25rem; }
+  .font-size-xlarge * { font-size: inherit !important; }
+
+  /* High contrast mode */
+  .high-contrast {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --primary: 60 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 120 100% 50%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 90%;
+    --accent: 60 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --border: 0 0% 40%;
+  }
+
+  .high-contrast .bg-gradient-hero {
+    background: hsl(60 100% 50%) !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: hsl(0 0% 0%) !important;
+  }
+
+  /* Accessibility buttons styling */
+  .accessibility-buttons { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.2s ease-in-out; }
+  .accessibility-buttons:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .dark .accessibility-buttons { background: rgba(34,34,34,0.95); border-color: rgba(255,255,255,0.1); }
+  .dark .accessibility-buttons:hover { box-shadow: 0 4px 20px rgba(255,255,255,0.1); }
 }

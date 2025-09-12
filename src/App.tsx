@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
+import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+import AccessibilityButtons from "@/components/AccessibilityButtons";
 import Categorias from "./pages/Categorias";
 import CategoriasLista from "./pages/CategoriasLista";
 import ServicoDetalhe from "./pages/ServicoDetalhe";
@@ -71,6 +73,7 @@ import LicencaAperfeicoamentoPage from "./pages/services/LicencaAperfeicoamentoP
 import ProtocoloServidorPage from "./pages/services/ProtocoloServidorPage";
 import VTNPage from "./pages/services/VTNPage";
 import SIGPage from "./pages/services/SIGPage";
+import Buscar from "./pages/Buscar";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +81,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <TooltipProvider>
+        <AccessibilityProvider>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Navigate to="/categorias" replace />} />
@@ -144,6 +148,7 @@ const App = () => (
             <Route path="/servicos/protocolo-servidor" element={<ProtocoloServidorPage />} />
             <Route path="/servicos/vtn" element={<VTNPage />} />
               <Route path="/servicos/sig" element={<SIGPage />} />
+              <Route path="/buscar" element={<Buscar />} />
               {/* Rotas dinâmicas de catálogo */}
               <Route path="/categorias" element={<Categorias />} />
               <Route path="/categorias/:categoria" element={<CategoriasLista />} />
@@ -151,8 +156,10 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
+          <AccessibilityButtons />
           <Toaster />
           <Sonner />
+        </AccessibilityProvider>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
