@@ -110,7 +110,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-semibold;
+    @apply bg-background text-foreground font-semibold overflow-x-hidden;
   }
 
   /* Global text enhancement for better visibility */
