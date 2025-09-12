@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Users, GraduationCap, Building, ClipboardList, MapPin } from "lucide-react";
 import { services } from "@/data/services";
