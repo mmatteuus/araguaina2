@@ -31,27 +31,35 @@ const Categorias = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categorias.map((cat) => (
-              <Link
-                key={cat.id}
-                to={`/categorias/${cat.id}`}
-                aria-label={`Abrir categoria ${cat.titulo}`}
-                className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
-              >
-                <Card className="transition-all duration-200 border-2 group-hover:border-primary/40 group-hover:shadow-lg group-active:scale-[0.99]">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="flex-shrink-0 translate-y-[1px] group-hover:scale-105 transition-transform duration-200">
-                        {cat.icon}
+            {categorias.map((cat) => {
+              const Icon =
+                cat.id === "cidadao" ? Users :
+                cat.id === "educacao" ? GraduationCap :
+                cat.id === "empresa" ? Building :
+                cat.id === "servidor" ? ClipboardList :
+                MapPin;
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/categorias/${cat.id}`}
+                  aria-label={`Abrir categoria ${cat.titulo}`}
+                  className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+                >
+                  <Card className="transition-all duration-200 border-2 group-hover:border-primary group-hover:bg-primary group-hover:shadow-lg group-active:scale-[0.99]">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="flex-shrink-0 translate-y-[1px] group-hover:scale-105 transition-transform duration-200">
+                          <Icon className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-200" />
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-extrabold text-foreground group-hover:text-white transition-colors duration-200">
+                          {cat.titulo}
+                        </h3>
                       </div>
-                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
-                        {cat.titulo}
-                      </h3>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
 
           <div className="mt-14">
