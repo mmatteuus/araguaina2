@@ -38,7 +38,7 @@ const CategoriasLista = () => {
     .filter((s) => mapToMainCategoryId(s.category) === categoria)
     .map((s) => ({
       id: s.id,
-      title: s.title,
+      title: s.title === 'ISS' ? 'ISS - Imposto Sobre Serviços' : s.title,
       slug: slugify(s.title),
       category: cat?.titulo || "",
       url_pagina_servico: "",
