@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import AccessibilityButtons from "@/components/AccessibilityButtons";
+import BackToTopButton from "@/components/BackToTopButton";
 import Categorias from "./pages/Categorias";
 import CategoriasLista from "./pages/CategoriasLista";
 import ServicoDetalhe from "./pages/ServicoDetalhe";
@@ -157,6 +158,7 @@ const App = () => (
             </Routes>
           </BrowserRouter>
           <AccessibilityButtons />
+          <BackToTopButton />
           <Toaster />
           <Sonner />
         </AccessibilityProvider>

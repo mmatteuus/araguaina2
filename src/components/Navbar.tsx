@@ -54,8 +54,8 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#003EDC] to-[#005EDC] border-b shadow-sm">
       <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
-        <div className="flex items-center justify-between min-h-[48px] sm:min-h-[56px] gap-2">
-          <div className="flex items-center gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 items-center min-h-[48px] sm:min-h-[56px] gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 justify-start">
             {!isHome && (
               <Button variant="outline" size="sm" onClick={onBack} className="bg-white/10 text-white border-white/30 hover:bg-white/20">
                 <ArrowLeft className="w-4 h-4" />
@@ -66,8 +66,8 @@ export const Navbar = () => {
               Prefeitura de Araguaína
             </h1>
           </div>
-          {/* Busca desktop/tablet */}
-          <form onSubmit={onSubmit} className="hidden sm:flex items-center gap-2 relative">
+          {/* Busca desktop/tablet centralizada */}
+          <form onSubmit={onSubmit} className="hidden sm:flex items-center gap-2 relative justify-center">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/80" />
               <input
@@ -101,16 +101,20 @@ export const Navbar = () => {
               </div>
             )}
           </form>
-          {/* Busca mobile */}
-          <div className="sm:hidden">
-            {!openSmallSearch ? (
-              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white" onClick={() => {
-                setOpenSmallSearch(true);
-                setTimeout(() => inputRef.current?.focus(), 0);
-              }}>
-                <Search className="w-4 h-4" />
-              </Button>
-            ) : null}
+          {/* Placeholder à direita para alinhamento com botões de acessibilidade flutuantes */}
+          <div className="flex justify-end items-center">
+            <div className="hidden sm:block w-24" />
+            {/* Busca mobile */}
+            <div className="sm:hidden">
+              {!openSmallSearch ? (
+                <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white" onClick={() => {
+                  setOpenSmallSearch(true);
+                  setTimeout(() => inputRef.current?.focus(), 0);
+                }}>
+                  <Search className="w-4 h-4" />
+                </Button>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

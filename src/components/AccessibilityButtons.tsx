@@ -14,7 +14,7 @@ const AccessibilityButtons = () => {
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
-    <div className="fixed top-20 right-3 z-50 flex flex-col gap-2">
+    <div className="fixed top-3 right-4 z-50 flex flex-col gap-2">
       <div className="accessibility-buttons bg-background/95 border rounded-lg p-2 shadow-lg">
         <div className="flex items-center gap-1">
           <Button variant="outline" size="sm" onClick={toggleTheme} title={`Alternar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`} className="p-2 h-8 w-8">
@@ -39,4 +39,3 @@ const AccessibilityButtons = () => {
 };
 
 export default AccessibilityButtons;
-
