@@ -3,6 +3,10 @@ import { ArrowLeft, Search, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FormEvent, useMemo, useRef, useState } from "react";
 import data from "@/data/servicos.json";
+import { services as fallbackServicesAll } from "@/data/services";
+import { mapToMainCategoryId } from "@/utils/categoryMap";
+import { slugify } from "@/utils/slugify";
+import { getServiceRoute } from "@/utils/serviceRoutes";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -12,10 +16,23 @@ export const Navbar = () => {
   const [openSmallSearch, setOpenSmallSearch] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  type Servico = { title: string; slug: string; category: string };
+  type Servico = { title: string; slug: string; category: string; isFallback?: boolean; id?: string };
   type Categoria = { id: string; titulo: string; servicos: Servico[] };
   const categorias = (data.categorias as Categoria[]) || [];
-  const all: Servico[] = useMemo(() => categorias.flatMap((c) => c.servicos.map((s) => ({ ...s, category: c.titulo }))), [categorias]);
+  const jsonAll: Servico[] = useMemo(() => categorias.flatMap((c) => c.servicos.map((s) => ({ ...s, category: c.titulo }))), [categorias]);
+  const fallbackAll: Servico[] = useMemo(() => (fallbackServicesAll || []).map((s) => ({
+    id: s.id,
+    title: s.title,
+    slug: slugify(s.title),
+    category: categorias.find((c) => c.id === mapToMainCategoryId(s.category))?.titulo || mapToMainCategoryId(s.category),
+    isFallback: true,
+  })), [categorias]);
+  const all: Servico[] = useMemo(() => {
+    const m = new Map<string, Servico>();
+    for (const s of jsonAll) m.set(s.slug, s);
+    for (const s of fallbackAll) if (!m.has(s.slug)) m.set(s.slug, s);
+    return Array.from(m.values());
+  }, [jsonAll, fallbackAll]);
   const suggestions = useMemo(() => {
     const t = term.trim().toLowerCase();
     if (!t) return [] as Servico[];
@@ -84,7 +101,7 @@ export const Navbar = () => {
                   <button
                     key={s.slug}
                     type="button"
-                    onClick={() => navigate(`/servicos/${s.slug}`)}
+                    onClick={() => s.isFallback && s.id ? navigate(getServiceRoute(s.id)) : navigate(`/servicos/${s.slug}`)}
                     className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-foreground"
                   >
                     <div className="text-sm font-bold leading-tight">{highlight(s.title, term)}</div>
@@ -144,7 +161,7 @@ export const Navbar = () => {
                   <button
                     key={s.slug}
                     type="button"
-                    onClick={() => { setOpenSmallSearch(false); navigate(`/servicos/${s.slug}`); }}
+                    onClick={() => { setOpenSmallSearch(false); s.isFallback && s.id ? navigate(getServiceRoute(s.id)) : navigate(`/servicos/${s.slug}`); }}
                     className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-foreground"
                   >
                     <div className="text-sm font-bold leading-tight">{highlight(s.title, term)}</div>

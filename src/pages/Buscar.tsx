@@ -6,8 +6,13 @@ import { Button } from "@/components/ui/button";
 import { FileText, Search } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState, useEffect } from "react";
+import { services as fallbackServicesAll } from "@/data/services";
+import { mapToMainCategoryId } from "@/utils/categoryMap";
+import { slugify } from "@/utils/slugify";
+import { getServiceRoute } from "@/utils/serviceRoutes";
 
 type Servico = {
+  id?: string;
   title: string;
   slug: string;
   category: string;
@@ -17,6 +22,7 @@ type Servico = {
   audience?: string[];
   secretaria_responsavel?: string;
   observacoes?: string;
+  isFallback?: boolean;
 };
 
 type Categoria = {
@@ -32,7 +38,21 @@ function useQuery() {
 
 const Buscar = () => {
   const categorias = (data.categorias as Categoria[]) || [];
-  const all: Servico[] = categorias.flatMap((c) => c.servicos.map((s) => ({ ...s, category: c.titulo })));
+  const jsonAll: Servico[] = categorias.flatMap((c) => c.servicos.map((s) => ({ ...s, category: c.titulo })));
+  const fallbackAll: Servico[] = (fallbackServicesAll || []).map((s) => ({
+    id: s.id,
+    title: s.title,
+    slug: slugify(s.title),
+    category: categorias.find((c) => c.id === mapToMainCategoryId(s.category))?.titulo || mapToMainCategoryId(s.category),
+    url_pagina_servico: "",
+    url_destino_final: "",
+    tipo_destino_final: "interno",
+    isFallback: true,
+  }));
+  const allMap = new Map<string, Servico>();
+  for (const s of jsonAll) allMap.set(s.slug, s);
+  for (const s of fallbackAll) if (!allMap.has(s.slug)) allMap.set(s.slug, s);
+  const all: Servico[] = Array.from(allMap.values());
 
   const query = useQuery();
   const navigate = useNavigate();
@@ -97,9 +117,15 @@ const Buscar = () => {
                       </div>
                     </div>
                     <div className="mt-auto">
-                      <Button asChild variant="primaryGradient" className="w-full">
-                        <Link to={`/servicos/${serv.slug}`}>Acessar</Link>
-                      </Button>
+                      {serv.isFallback && serv.id ? (
+                        <Button asChild variant="primaryGradient" className="w-full">
+                          <Link to={getServiceRoute(serv.id)}>Acessar</Link>
+                        </Button>
+                      ) : (
+                        <Button asChild variant="primaryGradient" className="w-full">
+                          <Link to={`/servicos/${serv.slug}`}>Acessar</Link>
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
