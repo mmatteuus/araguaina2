@@ -16,7 +16,7 @@ export const services = [
   },
   {
     id: "2", 
-    title: "ISS",
+    title: "ISS - Imposto Sobre Serviços",
     description: "Imposto sobre Serviços",
     category: "Tributário",
     icon: "Building"

@@ -36,10 +36,15 @@ export const Navbar = () => {
   const suggestions = useMemo(() => {
     const t = term.trim().toLowerCase();
     if (!t) return [] as Servico[];
-    return all
-      .filter((s) => (s.title || "").toLowerCase().includes(t) || (s.category || "").toLowerCase().includes(t) || (s.slug || "").includes(t))
-      .slice(0, 6);
-  }, [term, all]);
+    const currentCatId = pathname.startsWith('/categorias/') ? pathname.split('/')[2] : '';
+    const currentCatTitle = categorias.find((c) => c.id === currentCatId)?.titulo;
+    const filtered = all.filter((s) => (s.title || "").toLowerCase().includes(t) || (s.category || "").toLowerCase().includes(t) || (s.slug || "").includes(t));
+    if (currentCatTitle) {
+      const score = (s: Servico) => (s.category === currentCatTitle ? 0 : 1);
+      filtered.sort((a, b) => score(a) - score(b));
+    }
+    return filtered.slice(0, 6);
+  }, [term, all, pathname, categorias]);
 
   const highlight = (text: string, q: string) => {
     const t = q.trim();
