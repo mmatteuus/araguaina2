@@ -29,13 +29,6 @@ const NotaFiscalConsultaPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-6">
-          <Link to="/servicos/nota-fiscal" className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar para Nota Fiscal
-          </Link>
-        </div>
-
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">

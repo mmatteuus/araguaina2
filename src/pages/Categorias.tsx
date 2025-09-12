@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Users, GraduationCap, Building, ClipboardList, MapPin } from "lucide-react";
 import { services } from "@/data/services";
@@ -32,23 +31,25 @@ const Categorias = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categorias.map((cat) => (
-              <Card key={cat.id} className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 h-full">
-                <CardContent className="p-6 flex flex-col h-full">
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="flex-shrink-0">{cat.icon}</div>
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
-                      {cat.titulo}
-                    </h3>
-                  </div>
-                  <div className="mt-auto">
-                    <Button asChild variant="primaryGradient" className="w-full hover:scale-105">
-                      <Link to={`/categorias/${cat.id}`} className="flex items-center justify-center space-x-2 text-white">
-                        <span className="text-white font-semibold">Acessar</span>
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <Link
+                key={cat.id}
+                to={`/categorias/${cat.id}`}
+                aria-label={`Abrir categoria ${cat.titulo}`}
+                className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+              >
+                <Card className="transition-all duration-200 border-2 group-hover:border-primary/40 group-hover:shadow-lg group-active:scale-[0.99]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-shrink-0 translate-y-[1px] group-hover:scale-105 transition-transform duration-200">
+                        {cat.icon}
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
+                        {cat.titulo}
+                      </h3>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 
