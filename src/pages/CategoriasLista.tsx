@@ -5,6 +5,10 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
+import { services as fallbackServicesAll } from "@/data/services";
+import { mapToMainCategoryId } from "@/utils/categoryMap";
+import { slugify } from "@/utils/slugify";
+import { getServiceRoute } from "@/utils/serviceRoutes";
 
 type Servico = {
   title: string;
@@ -29,6 +33,27 @@ const CategoriasLista = () => {
   const categorias = (data.categorias as Categoria[]) || [];
   const cat = categorias.find((c) => c.id === categoria);
 
+  // Fallback: também incluir serviços do catálogo antigo (services.ts)
+  const fallback = (fallbackServicesAll || [])
+    .filter((s) => mapToMainCategoryId(s.category) === categoria)
+    .map((s) => ({
+      id: s.id,
+      title: s.title,
+      slug: slugify(s.title),
+      category: cat?.titulo || "",
+      url_pagina_servico: "",
+      url_destino_final: "",
+      tipo_destino_final: "interno",
+      secretaria_responsavel: undefined,
+      observacoes: undefined,
+      isFallback: true as const
+    }));
+
+  // Unir JSON + fallback, evitando duplicados por slug
+  const jsonServices = (cat?.servicos || []).map((s) => ({ ...s, isFallback: false as const }));
+  const seen = new Set(jsonServices.map((s) => s.slug));
+  const merged = [...jsonServices, ...fallback.filter((s) => !seen.has(s.slug))];
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -47,16 +72,16 @@ const CategoriasLista = () => {
             <div className="text-center text-foreground font-semibold">Categoria não encontrada.</div>
           )}
 
-          {cat && cat.servicos.length === 0 && (
+          {cat && merged.length === 0 && (
             <div className="max-w-xl mx-auto text-center bg-muted/30 border rounded-lg p-6">
               <h2 className="text-xl font-bold mb-2">Em produção</h2>
               <p className="text-foreground font-semibold">O catálogo desta categoria está em produção e será publicado em breve.</p>
             </div>
           )}
 
-          {cat && cat.servicos.length > 0 && (
+          {cat && merged.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {cat.servicos.map((serv) => (
+              {merged.map((serv: any) => (
                 <Card key={serv.slug} className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 h-full">
                   <CardContent className="p-6 flex flex-col h-full">
                     <div className="flex items-center space-x-4 mb-4">
@@ -73,11 +98,19 @@ const CategoriasLista = () => {
                       {serv.secretaria_responsavel || serv.category}
                     </p>
                     <div className="mt-auto">
-                      <Button asChild variant="primaryGradient" className="w-full hover:scale-105">
-                        <Link to={`/servicos/${serv.slug}`} className="flex items-center justify-center space-x-2 text-white">
-                          <span className="text-white font-semibold">Acessar</span>
-                        </Link>
-                      </Button>
+                      {serv.isFallback ? (
+                        <Button asChild variant="primaryGradient" className="w-full hover:scale-105">
+                          <Link to={getServiceRoute(serv.id)} className="flex items-center justify-center space-x-2 text-white">
+                            <span className="text-white font-semibold">Acessar</span>
+                          </Link>
+                        </Button>
+                      ) : (
+                        <Button asChild variant="primaryGradient" className="w-full hover:scale-105">
+                          <Link to={`/servicos/${serv.slug}`} className="flex items-center justify-center space-x-2 text-white">
+                            <span className="text-white font-semibold">Acessar</span>
+                          </Link>
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
