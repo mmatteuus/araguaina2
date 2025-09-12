@@ -3,43 +3,9 @@
     {
       "id": "cidadao",
       "titulo": "Cidadão",
-      "servicos": [
-        {
-          "title": "Emitir Guias do IPTU",
-          "slug": "emitir-guias-do-iptu",
-          "category": "Cidadão",
-          "url_pagina_servico": "https://www.araguaina.to.gov.br/servicos/emitir-guias-do-iptu-1",
-          "url_destino_final": "",
-          "tipo_destino_final": "prodata",
-          "audience": ["Cidadãos"],
-          "secretaria_responsavel": "Secretaria Municipal da Fazenda",
-          "observacoes": "Pode exigir dados do contribuinte."
-        },
-        {
-          "title": "Taxa de Coleta de Lixo",
-          "slug": "taxa-de-coleta-de-lixo",
-          "category": "Cidadão",
-          "url_pagina_servico": "",
-          "url_destino_final": "",
-          "tipo_destino_final": "prodata",
-          "audience": ["Cidadãos"],
-          "secretaria_responsavel": "Secretaria Municipal da Fazenda",
-          "observacoes": "Catalogar link final após extração."
-        },
-        {
-          "title": "Licenciamento Ambiental",
-          "slug": "licenciamento-ambiental",
-          "category": "Cidadão",
-          "url_pagina_servico": "",
-          "url_destino_final": "",
-          "tipo_destino_final": "interno",
-          "audience": ["Cidadãos"],
-          "secretaria_responsavel": "Meio Ambiente",
-          "observacoes": "Catalogar link final após extração."
-        }
-      ]
+      "servicos": []
     },
-    { 
+    {
       "id": "educacao",
       "titulo": "Educação",
       "servicos": []
@@ -47,80 +13,12 @@
     {
       "id": "empresa",
       "titulo": "Empresa",
-      "servicos": [
-        {
-          "title": "Emitir NFS-e",
-          "slug": "emitir-nfs-e",
-          "category": "Empresa",
-          "url_pagina_servico": "https://www.araguaina.to.gov.br/servicos/emitir-nota-fiscal-de-servico-eletronica-e-nfs",
-          "url_destino_final": "",
-          "tipo_destino_final": "webiss",
-          "audience": ["Empresas"],
-          "secretaria_responsavel": "Secretaria Municipal da Fazenda",
-          "observacoes": "Ambiente operacional NFS-e (WebISS)."
-        },
-        {
-          "title": "Cadastrar Microempreendedor Individual (MEI)",
-          "slug": "cadastrar-mei",
-          "category": "Empresa",
-          "url_pagina_servico": "",
-          "url_destino_final": "",
-          "tipo_destino_final": "govbr",
-          "audience": ["Empresas"],
-          "secretaria_responsavel": "Desenvolvimento Econômico",
-          "observacoes": "Destino gov.br — catalogar link após extração."
-        },
-        {
-          "title": "Emitir Guia do Alvará",
-          "slug": "emitir-guia-do-alvara",
-          "category": "Empresa",
-          "url_pagina_servico": "",
-          "url_destino_final": "",
-          "tipo_destino_final": "prodata",
-          "audience": ["Empresas"],
-          "secretaria_responsavel": "Secretaria Municipal da Fazenda",
-          "observacoes": "Sistema SIG/Prodata."
-        }
-      ]
+      "servicos": []
     },
     {
       "id": "servidor",
       "titulo": "Servidor",
-      "servicos": [
-        {
-          "title": "Contra-cheque (IMPAR)",
-          "slug": "contra-cheque-impar",
-          "category": "Servidor",
-          "url_pagina_servico": "https://www.araguaina.to.gov.br/servidor",
-          "url_destino_final": "",
-          "tipo_destino_final": "impar",
-          "audience": ["Servidores"],
-          "secretaria_responsavel": "Recursos Humanos",
-          "observacoes": "Pode exigir login no sistema IMPAR."
-        },
-        {
-          "title": "Junta Médica - Formulário",
-          "slug": "junta-medica-formulario",
-          "category": "Servidor",
-          "url_pagina_servico": "https://www.araguaina.to.gov.br/servidor",
-          "url_destino_final": "",
-          "tipo_destino_final": "pdf",
-          "audience": ["Servidores"],
-          "secretaria_responsavel": "Recursos Humanos",
-          "observacoes": "Baixar formulário em PDF (catalogar link)."
-        },
-        {
-          "title": "Protocolo Servidor",
-          "slug": "protocolo-servidor",
-          "category": "Servidor",
-          "url_pagina_servico": "https://www.araguaina.to.gov.br/servidor",
-          "url_destino_final": "",
-          "tipo_destino_final": "interno",
-          "audience": ["Servidores"],
-          "secretaria_responsavel": "Administração",
-          "observacoes": "Acesso interno — catalogar detalhes."
-        }
-      ]
+      "servicos": []
     },
     {
       "id": "turista",
@@ -129,4 +27,3 @@
     }
   ]
 }
-
