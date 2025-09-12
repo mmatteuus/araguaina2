@@ -106,7 +106,7 @@ const ConsignacoesPage = () => {
               </p>
               <Button 
                 size="lg" 
-                variant="outline"
+                variant="soft"
                 className="gap-2 w-full"
                 onClick={() => window.open("https://aux.araguaina.to.gov.br/portal/pdf/15.pdf", "_blank")}
               >
@@ -124,3 +124,4 @@ const ConsignacoesPage = () => {
 };
 
 export default ConsignacoesPage;
+

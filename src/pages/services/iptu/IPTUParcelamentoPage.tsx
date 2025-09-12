@@ -140,3 +140,4 @@ const IPTUParcelamentoPage = () => {
 
 export default IPTUParcelamentoPage;
 
+

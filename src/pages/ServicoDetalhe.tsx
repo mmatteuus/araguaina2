@@ -91,13 +91,13 @@ const ServicoDetalhe = () => {
                   </a>
                 </Button>
                 {pagina && (
-                  <Button asChild variant="outline">
+                  <Button asChild variant="soft">
                     <a href={pagina} target="_blank" rel="noopener noreferrer">
                       Ver página oficial
                     </a>
                   </Button>
                 )}
-                <Button asChild variant="outline">
+                <Button asChild variant="soft">
                   <Link to={`/categorias/${(servico.category || "").toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`}>
                     Voltar para a categoria
                   </Link>

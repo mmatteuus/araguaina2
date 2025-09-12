@@ -97,3 +97,4 @@ const CodigoPosturaPage = () => {
 
 export default CodigoPosturaPage;
 
+

@@ -97,3 +97,4 @@ const DeclaracaoBensPage = () => {
 
 export default DeclaracaoBensPage;
 
+
