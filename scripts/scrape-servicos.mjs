@@ -1,11 +1,11 @@
-// Scraper para montar src/data/servicos.json
+// Scraper para montar src/data/servicos.json com ordem igual ao site
 // Requer: node >=18 (fetch nativo) e pacote 'cheerio'
-// Instale: npm i -D cheerio
+// Instalar: npm i -D cheerio
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import cheerio from 'cheerio';
+import { load as loadHTML } from 'cheerio';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,39 +36,43 @@ function classifyDestino(url) {
 }
 
 async function fetchHTML(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Scraper Araguaina)' }});
+  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Scraper Araguaina)' } });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return await res.text();
 }
 
 async function getCategoriasPrincipais() {
-  // As 5 fixas já definidas
   return [
-    { id: 'cidadao', titulo: 'Cidadão', url: `${BASE}/cidadao` },
+    { id: 'cidadao',  titulo: 'Cidadão',  url: `${BASE}/cidadao` },
     { id: 'educacao', titulo: 'Educação', url: `${BASE}/educacao` },
-    { id: 'empresa', titulo: 'Empresa', url: `${BASE}/categorias/empresa` },
+    { id: 'empresa',  titulo: 'Empresa',  url: `${BASE}/categorias/empresa` },
     { id: 'servidor', titulo: 'Servidor', url: `${BASE}/servidor` },
-    { id: 'turista', titulo: 'Turista', url: `${BASE}/turista` },
+    { id: 'turista',  titulo: 'Turista',  url: `${BASE}/turista` },
   ];
 }
 
-async function extractServicosFromListaGeral() {
-  // Página paginada de serviços
-  const url = `${BASE}/servicos`;
-  const html = await fetchHTML(url);
-  const $ = cheerio.load(html);
-  // Heurística: encontrar cards/lista de serviços com links para /servicos/<slug>
-  const links = new Set();
+async function extractServiceLinksFromCategoryPage(catUrl) {
+  const html = await fetchHTML(catUrl);
+  const $ = loadHTML(html);
+  const links = [];
+  const seen = new Set();
   $('a[href^="/servicos/"]').each((_, a) => {
     const href = $(a).attr('href');
-    if (href && /^\/servicos\//.test(href)) links.add(new URL(href, BASE).href);
+    if (!href) return;
+    if (!/^\/servicos\//.test(href)) return;
+    const abs = new URL(href, BASE).href;
+    const slug = abs.split('/').filter(Boolean).pop();
+    if (slug && !seen.has(slug)) {
+      seen.add(slug);
+      links.push(abs);
+    }
   });
-  return [...links];
+  return links;
 }
 
 async function extractServiceDetail(url) {
   const html = await fetchHTML(url);
-  const $ = cheerio.load(html);
+  const $ = loadHTML(html);
   const title = ($('h1').first().text() || $('title').text() || '').trim();
   const slug = url.split('/').filter(Boolean).pop();
   const detail = {
@@ -82,17 +86,15 @@ async function extractServiceDetail(url) {
     tipo_destino_final: 'outros',
     observacoes: undefined,
   };
-  // Procurar campo "Link para acesso ao Serviço no sistema de origem"
-  const labels = $('*:contains("Link para acesso ao Serviço no sistema de origem")');
-  if (labels.length) {
-    const a = labels.find('a[href]').first();
+  const label = $('*:contains("Link para acesso ao Serviço no sistema de origem")');
+  if (label.length) {
+    const a = label.find('a[href]').first();
     const href = a.attr('href');
     if (href) {
       detail.url_destino_final = href.startsWith('http') ? href : new URL(href, BASE).href;
       detail.tipo_destino_final = classifyDestino(detail.url_destino_final);
     }
   } else {
-    // Heurística: primeiro link externo relevante
     const a = $('a[href^="http"]').filter((_, el) => !$(el).attr('href').includes(BASE)).first();
     const href = a.attr('href');
     if (href) {
@@ -100,7 +102,6 @@ async function extractServiceDetail(url) {
       detail.tipo_destino_final = classifyDestino(href);
     }
   }
-  // Público-alvo e secretaria (heurísticas)
   const texto = $('body').text();
   if (/servidor(es)?/i.test(texto)) detail.audience.push('Servidores');
   if (/empresa(s)?|iss|nfs/i.test(texto)) detail.audience.push('Empresas');
@@ -110,47 +111,30 @@ async function extractServiceDetail(url) {
   return detail;
 }
 
-function mapDetailToCategoria(detail) {
-  const aud = (detail.audience || []).map(a => a.toLowerCase());
-  if (aud.includes('servidores')) return 'Servidor';
-  if (aud.includes('empresas')) return 'Empresa';
-  return 'Cidadão';
-}
-
 async function run() {
   const categorias = await getCategoriasPrincipais();
-  const lista = await extractServicosFromListaGeral();
-  const servicosDetalhe = [];
-
-  for (const link of lista) {
+  const resultado = [];
+  for (const cat of categorias) {
     try {
-      const d = await extractServiceDetail(link);
-      d.category = mapDetailToCategoria(d);
-      servicosDetalhe.push(d);
-      await sleep(250);
+      const links = await extractServiceLinksFromCategoryPage(cat.url);
+      const servicos = [];
+      for (const link of links) {
+        try {
+          const d = await extractServiceDetail(link);
+          d.category = cat.titulo;
+          servicos.push(d);
+          await sleep(200);
+        } catch (e) {
+          console.warn('Falha serviço', link, e.message);
+        }
+      }
+      resultado.push({ id: cat.id, titulo: cat.titulo, servicos });
     } catch (e) {
-      console.warn('Falha ao extrair', link, e.message);
+      console.warn('Falha categoria', cat.url, e.message);
+      resultado.push({ id: cat.id, titulo: cat.titulo, servicos: [] });
     }
   }
-
-  const porCategoria = {
-    cidadao: [], educacao: [], empresa: [], servidor: [], turista: [],
-  };
-  for (const s of servicosDetalhe) {
-    const key = s.category.toLowerCase();
-    if (key.includes('empresa')) porCategoria.empresa.push(s);
-    else if (key.includes('servidor')) porCategoria.servidor.push(s);
-    else porCategoria.cidadao.push(s);
-  }
-
-  const json = {
-    categorias: categorias.map(c => ({
-      id: c.id,
-      titulo: c.titulo,
-      servicos: porCategoria[c.id] || [],
-    }))
-  };
-
+  const json = { categorias: resultado };
   const outPath = path.resolve(__dirname, '../src/data/servicos.json');
   await fs.writeFile(outPath, JSON.stringify(json, null, 2), 'utf8');
   console.log('Catálogo atualizado em', outPath);
