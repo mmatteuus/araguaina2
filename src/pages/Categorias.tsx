@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Users, GraduationCap, Building, ClipboardList, MapPin } from "lucide-react";
 import { services } from "@/data/services";
 import { mapToMainCategoryId } from "@/utils/categoryMap";
+import { servicesOrder } from "@/data/servicesOrder";
 import { ServiceCard } from "@/components/ServiceCard";
 
 const categorias = [
@@ -80,11 +81,19 @@ const Categorias = () => {
 
             {["cidadao", "educacao", "empresa", "servidor", "turista"].map((id) => {
               const titulo = categorias.find((c) => c.id === id)?.titulo || id;
-              const group = services.filter((s) => mapToMainCategoryId(s.category) === id);
+              const order = servicesOrder[id] || [];
+              const orderIndex = new Map(order.map((sid, idx) => [sid, idx] as const));
+              const group = services
+                .filter((s) => mapToMainCategoryId(s.category) === id)
+                .sort((a, b) => {
+                  const ia = orderIndex.has(a.id) ? (orderIndex.get(a.id) as number) : Number.MAX_SAFE_INTEGER;
+                  const ib = orderIndex.has(b.id) ? (orderIndex.get(b.id) as number) : Number.MAX_SAFE_INTEGER;
+                  return ia - ib;
+                });
               if (!group.length) return null;
               return (
                 <section key={id} aria-labelledby={`sec-${id}`} className="space-y-4">
-                  <h3 id={`sec-${id}`} className="text-xl md:text-2xl font-bold">{titulo}</h3>
+                  <h3 id={`sec-${id}`} className="text-xl md:text-2xl font-bold">{`Serviços Online — ${titulo}`}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {group.map((s) => (
                       <ServiceCard key={s.id} service={s} />
@@ -102,4 +111,3 @@ const Categorias = () => {
 };
 
 export default Categorias;
-
