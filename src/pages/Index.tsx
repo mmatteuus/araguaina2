@@ -1,13 +1,11 @@
 import { Navbar } from "@/components/Navbar";
 import { ServiceCard } from "@/components/ServiceCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import { services } from "@/data/services";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <AccessibilityProvider>
       <div className="min-h-screen bg-background">
         <Navbar />
         
@@ -34,7 +32,6 @@ const Index = () => {
 
         <WhatsAppButton />
       </div>
-    </AccessibilityProvider>
   );
 };
 

@@ -52,10 +52,7 @@ All colors MUST be HSL.
     --gradient-secondary: linear-gradient(135deg, hsl(0 0% 60%), hsl(0 0% 50%));
     --gradient-hero: linear-gradient(135deg, hsl(225 100% 43%), hsl(217 100% 43%));
 
-    /* Accessibility */
-    --font-size-normal: 1rem;
-    --font-size-large: 1.125rem;
-    --font-size-xlarge: 1.25rem;
+    
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -163,50 +160,7 @@ All colors MUST be HSL.
     color: white !important;
   }
 
-  /* Accessibility font sizes */
-  .font-size-normal {
-    font-size: var(--font-size-normal);
-  }
-
-  .font-size-large {
-    font-size: var(--font-size-large);
-  }
-
-  .font-size-large * {
-    font-size: inherit !important;
-  }
-
-  .font-size-xlarge {
-    font-size: var(--font-size-xlarge);
-  }
-
-  .font-size-xlarge * {
-    font-size: inherit !important;
-  }
-
-  /* High contrast mode */
-  .high-contrast {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-    --primary: 60 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 120 100% 50%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 90%;
-    --accent: 60 100% 50%;
-    --accent-foreground: 0 0% 0%;
-    --border: 0 0% 40%;
-  }
-
-  .high-contrast .bg-gradient-hero {
-    background: hsl(60 100% 50%) !important;
-    -webkit-background-clip: unset !important;
-    background-clip: unset !important;
-    -webkit-text-fill-color: hsl(0 0% 0%) !important;
-  }
+  
 
   /* Utility classes for better readability */
   .line-clamp-2 {
@@ -223,23 +177,5 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
-  /* Accessibility buttons styling */
-  .accessibility-buttons {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: all 0.2s ease-in-out;
-  }
-
-  .accessibility-buttons:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .dark .accessibility-buttons {
-    background: rgba(34, 34, 34, 0.95);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .dark .accessibility-buttons:hover {
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-  }
+  
 }

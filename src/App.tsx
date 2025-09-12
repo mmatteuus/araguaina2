@@ -2,10 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
-import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
-import Index from "./pages/Index";
+import Categorias from "./pages/Categorias";
+import CategoriasLista from "./pages/CategoriasLista";
+import ServicoDetalhe from "./pages/ServicoDetalhe";
 import NotFound from "./pages/NotFound";
 import IPTUPage from "./pages/services/IPTUPage";
 import IPTUConsultaPage from "./pages/services/iptu/IPTUConsultaPage";
@@ -77,10 +78,9 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <TooltipProvider>
-        <AccessibilityProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<Navigate to="/categorias" replace />} />
               <Route path="/servicos/iptu" element={<IPTUPage />} />
               <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
               <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
@@ -143,13 +143,16 @@ const App = () => (
             <Route path="/servicos/licenca-aperfeicoamento" element={<LicencaAperfeicoamentoPage />} />
             <Route path="/servicos/protocolo-servidor" element={<ProtocoloServidorPage />} />
             <Route path="/servicos/vtn" element={<VTNPage />} />
-            <Route path="/servicos/sig" element={<SIGPage />} />
+              <Route path="/servicos/sig" element={<SIGPage />} />
+              {/* Rotas dinâmicas de catálogo */}
+              <Route path="/categorias" element={<Categorias />} />
+              <Route path="/categorias/:categoria" element={<CategoriasLista />} />
+              <Route path="/servicos/:slug" element={<ServicoDetalhe />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
           <Toaster />
           <Sonner />
-        </AccessibilityProvider>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
