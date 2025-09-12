@@ -12,6 +12,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isHome = pathname === "/" || pathname === "/categorias";
+  const currentCatId = pathname.startsWith('/categorias/') ? pathname.split('/')[2] : '';
   const [term, setTerm] = useState("");
   const [openSmallSearch, setOpenSmallSearch] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -69,7 +70,7 @@ export const Navbar = () => {
     e.preventDefault();
     const q = term.trim();
     if (!q) return;
-    navigate(`/buscar?q=${encodeURIComponent(q)}`);
+    navigate(`/buscar?q=${encodeURIComponent(q)}${currentCatId ? `&cat=${currentCatId}` : ''}`);
     setTerm("");
   };
 
@@ -115,7 +116,7 @@ export const Navbar = () => {
                 ))}
                 <button
                   type="button"
-                  onClick={() => navigate(`/buscar?q=${encodeURIComponent(term)}`)}
+                  onClick={() => navigate(`/buscar?q=${encodeURIComponent(term)}${currentCatId ? `&cat=${currentCatId}` : ''}`)}
                   className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-primary font-semibold"
                 >
                   Ver todos os resultados para "{term}"
@@ -175,7 +176,7 @@ export const Navbar = () => {
                 ))}
                 <button
                   type="button"
-                  onClick={() => { setOpenSmallSearch(false); navigate(`/buscar?q=${encodeURIComponent(term)}`); }}
+                  onClick={() => { setOpenSmallSearch(false); navigate(`/buscar?q=${encodeURIComponent(term)}${currentCatId ? `&cat=${currentCatId}` : ''}`); }}
                   className="mt-1 w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-primary font-semibold"
                 >
                   Ver todos os resultados para "{term}"

@@ -57,6 +57,8 @@ const Buscar = () => {
   const query = useQuery();
   const navigate = useNavigate();
   const [term, setTerm] = useState(query.get('q') || '');
+  const catPref = query.get('cat') || '';
+  const catTitle = useMemo(() => categorias.find((c) => c.id === catPref)?.titulo, [catPref, categorias]);
 
   useEffect(() => {
     setTerm(query.get('q') || '');
@@ -65,7 +67,7 @@ const Buscar = () => {
   const results = useMemo(() => {
     const t = (term || '').trim().toLowerCase();
     if (!t) return [] as Servico[];
-    return all.filter((s) => {
+    const filtered = all.filter((s) => {
       return (
         (s.title || '').toLowerCase().includes(t) ||
         (s.slug || '').toLowerCase().includes(t) ||
@@ -73,7 +75,12 @@ const Buscar = () => {
         (s.secretaria_responsavel || '').toLowerCase().includes(t)
       );
     });
-  }, [term, all]);
+    if (catTitle) {
+      const score = (s: Servico) => (s.category === catTitle ? 0 : 1);
+      filtered.sort((a, b) => score(a) - score(b));
+    }
+    return filtered;
+  }, [term, all, catTitle]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
