@@ -75,7 +75,7 @@ const ProcessosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema de consulta de processos administrativos
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/processos" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const ProcessosPage = () => {
 };
 
 export default ProcessosPage;
+

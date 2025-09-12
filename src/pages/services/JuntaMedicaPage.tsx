@@ -77,7 +77,7 @@ const JuntaMedicaPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe o formulário para solicitar junta médica
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/upload/documentos/formulario-junta-medica.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const JuntaMedicaPage = () => {
 };
 
 export default JuntaMedicaPage;
+

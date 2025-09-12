@@ -77,7 +77,7 @@ const ProtocoloPage = () => {
               <p className="text-muted-foreground mb-4">
                 Gerencie seus protocolos e processos de forma digital
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/protocolo" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const ProtocoloPage = () => {
 };
 
 export default ProtocoloPage;
+

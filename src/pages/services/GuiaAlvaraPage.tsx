@@ -77,7 +77,7 @@ const GuiaAlvaraPage = () => {
               <p className="text-muted-foreground mb-4">
                 Entre no sistema Prodata para emitir sua guia de alvará
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://araguaina.prodata.inf.br" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const GuiaAlvaraPage = () => {
 };
 
 export default GuiaAlvaraPage;
+

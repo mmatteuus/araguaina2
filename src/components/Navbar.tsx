@@ -24,6 +24,19 @@ export const Navbar = () => {
       .slice(0, 6);
   }, [term, all]);
 
+  const highlight = (text: string, q: string) => {
+    const t = q.trim();
+    if (!t) return text;
+    const parts = text.split(new RegExp(`(${t})`, 'ig'));
+    return parts.map((p, i) =>
+      p.toLowerCase() === t.toLowerCase() ? (
+        <mark key={i} className="bg-yellow-200 text-foreground px-0.5 rounded-sm">{p}</mark>
+      ) : (
+        <span key={i}>{p}</span>
+      )
+    );
+  };
+
   const onBack = () => {
     if (isHome) return;
     if (typeof window !== 'undefined' && window.history.length > 1) navigate(-1);
@@ -65,7 +78,7 @@ export const Navbar = () => {
               />
             </div>
             <Button type="submit" size="sm" className="bg-white/20 hover:bg-white/30 text-white">Buscar</Button>
-            {term && suggestions.length > 0 && (
+            {term && (
               <div className="absolute top-[110%] right-0 w-[min(90vw,28rem)] bg-background border rounded-md shadow-lg p-2 z-50">
                 {suggestions.map((s) => (
                   <button
@@ -74,10 +87,17 @@ export const Navbar = () => {
                     onClick={() => navigate(`/servicos/${s.slug}`)}
                     className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-foreground"
                   >
-                    <div className="text-sm font-bold leading-tight">{s.title}</div>
-                    <div className="text-xs text-muted-foreground">{s.category}</div>
+                    <div className="text-sm font-bold leading-tight">{highlight(s.title, term)}</div>
+                    <div className="text-xs text-muted-foreground">{highlight(s.category, term)}</div>
                   </button>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => navigate(`/buscar?q=${encodeURIComponent(term)}`)}
+                  className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-primary font-semibold"
+                >
+                  Ver todos os resultados para "{term}"
+                </button>
               </div>
             )}
           </form>
@@ -114,7 +134,7 @@ export const Navbar = () => {
                 <X className="w-4 h-4" />
               </Button>
             </form>
-            {term && suggestions.length > 0 && (
+            {term && (
               <div className="mt-2">
                 {suggestions.map((s) => (
                   <button
@@ -123,10 +143,17 @@ export const Navbar = () => {
                     onClick={() => { setOpenSmallSearch(false); navigate(`/servicos/${s.slug}`); }}
                     className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-foreground"
                   >
-                    <div className="text-sm font-bold leading-tight">{s.title}</div>
-                    <div className="text-xs text-muted-foreground">{s.category}</div>
+                    <div className="text-sm font-bold leading-tight">{highlight(s.title, term)}</div>
+                    <div className="text-xs text-muted-foreground">{highlight(s.category, term)}</div>
                   </button>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => { setOpenSmallSearch(false); navigate(`/buscar?q=${encodeURIComponent(term)}`); }}
+                  className="mt-1 w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-primary font-semibold"
+                >
+                  Ver todos os resultados para "{term}"
+                </button>
               </div>
             )}
           </div>

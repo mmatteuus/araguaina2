@@ -77,7 +77,7 @@ const ValidarNFSePage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema Webiss para validar sua nota fiscal eletrônica
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://araguainato.webiss.com.br" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const ValidarNFSePage = () => {
 };
 
 export default ValidarNFSePage;
+

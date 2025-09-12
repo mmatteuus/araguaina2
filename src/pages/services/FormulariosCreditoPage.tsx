@@ -77,7 +77,7 @@ const FormulariosCreditoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe todos os formulários necessários para o crédito educativo
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/formularios-credito-educativo" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const FormulariosCreditoPage = () => {
 };
 
 export default FormulariosCreditoPage;
+

@@ -75,7 +75,7 @@ const DiarioOficialPage = () => {
               <p className="text-muted-foreground mb-4">
                 Consulte todas as publicações oficiais do município
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/diario-oficial-do-municipio-de-araguaina" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const DiarioOficialPage = () => {
 };
 
 export default DiarioOficialPage;
+

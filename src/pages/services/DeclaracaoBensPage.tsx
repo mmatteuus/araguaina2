@@ -75,7 +75,7 @@ const DeclaracaoBensPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o formulário oficial para declaração de bens
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/declaracao-de-bens-para-fins-de-posse-em-cargo-publico" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const DeclaracaoBensPage = () => {
 };
 
 export default DeclaracaoBensPage;
+

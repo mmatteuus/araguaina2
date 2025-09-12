@@ -75,7 +75,7 @@ const CodigoPosturaPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse as normas de postura do município
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/codigo-de-postura-do-municipio" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const CodigoPosturaPage = () => {
 };
 
 export default CodigoPosturaPage;
+

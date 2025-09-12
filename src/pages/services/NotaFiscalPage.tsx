@@ -77,7 +77,7 @@ const NotaFiscalPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema oficial de nota fiscal eletrônica
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/nfse" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const NotaFiscalPage = () => {
 };
 
 export default NotaFiscalPage;
+

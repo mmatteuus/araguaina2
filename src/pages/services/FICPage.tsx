@@ -77,7 +77,7 @@ const FICPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe o formulário de informações cadastrais
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/ficha-de-informacoes-cadastrais-fic" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const FICPage = () => {
 };
 
 export default FICPage;
+

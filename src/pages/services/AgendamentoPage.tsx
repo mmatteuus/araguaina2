@@ -75,7 +75,7 @@ const AgendamentoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Evite filas e agende seu atendimento com antecedência
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/agendamento" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const AgendamentoPage = () => {
 };
 
 export default AgendamentoPage;
+

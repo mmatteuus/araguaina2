@@ -77,7 +77,7 @@ const LeisDecretosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Consulte todas as leis, decretos e portarias municipais
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://leis.araguaina.to.gov.br" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const LeisDecretosPage = () => {
 };
 
 export default LeisDecretosPage;
+

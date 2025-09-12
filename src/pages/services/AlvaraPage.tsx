@@ -75,7 +75,7 @@ const AlvaraPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema oficial para solicitar seu alvará
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/alvara" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const AlvaraPage = () => {
 };
 
 export default AlvaraPage;
+

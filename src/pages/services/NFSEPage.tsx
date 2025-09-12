@@ -77,7 +77,7 @@ const NFSEPage = () => {
               <p className="text-muted-foreground mb-4">
                 Entre no sistema oficial para emitir suas notas fiscais eletrônicas
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://araguainato.webiss.com.br" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const NFSEPage = () => {
 };
 
 export default NFSEPage;
+

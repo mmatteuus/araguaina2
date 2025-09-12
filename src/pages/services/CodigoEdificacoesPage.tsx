@@ -75,7 +75,7 @@ const CodigoEdificacoesPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse a legislação municipal para construções
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/codigo-de-edificacoes-do-municipio" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const CodigoEdificacoesPage = () => {
 };
 
 export default CodigoEdificacoesPage;
+

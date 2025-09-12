@@ -121,7 +121,7 @@ const IPTUParcelamentoPage = () => {
 
               <Button 
                 onClick={handleParcelamento}
-                className="w-full bg-gradient-primary hover:bg-primary/90"
+                variant="primaryGradient" className="w-full"
                 size="lg"
                 disabled={!aceiteTermos}
               >
@@ -139,3 +139,4 @@ const IPTUParcelamentoPage = () => {
 };
 
 export default IPTUParcelamentoPage;
+

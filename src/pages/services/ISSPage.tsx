@@ -77,7 +77,7 @@ const ISSPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema oficial para gerenciar o ISS da sua empresa
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/iss" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const ISSPage = () => {
 };
 
 export default ISSPage;
+

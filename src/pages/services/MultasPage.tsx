@@ -75,7 +75,7 @@ const MultasPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema oficial para consultar suas multas
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/consultar-multas" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const MultasPage = () => {
 };
 
 export default MultasPage;
+

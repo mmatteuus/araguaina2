@@ -75,7 +75,7 @@ const InfracoesTransitoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema oficial para consultar suas infrações
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/consultaronline-suas-infracoesdetransito" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const InfracoesTransitoPage = () => {
 };
 
 export default InfracoesTransitoPage;
+

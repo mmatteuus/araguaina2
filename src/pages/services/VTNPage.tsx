@@ -77,7 +77,7 @@ const VTNPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe a tabela oficial de valores de terra nua
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="/documentos/tabela-vtn.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const VTNPage = () => {
 };
 
 export default VTNPage;
+

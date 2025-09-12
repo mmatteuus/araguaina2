@@ -75,7 +75,7 @@ const LicencaSanitariaPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o portal oficial para solicitar sua licença
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/licenca-sanitaria" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const LicencaSanitariaPage = () => {
 };
 
 export default LicencaSanitariaPage;
+

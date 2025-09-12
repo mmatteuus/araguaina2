@@ -107,7 +107,7 @@ const IPTUEmissaoPage = () => {
 
               <Button 
                 onClick={handleEmissao}
-                className="w-full bg-gradient-primary hover:bg-primary/90"
+                variant="primaryGradient" className="w-full"
                 size="lg"
               >
                 <Download className="w-4 h-4 mr-2" />
@@ -124,3 +124,4 @@ const IPTUEmissaoPage = () => {
 };
 
 export default IPTUEmissaoPage;
+

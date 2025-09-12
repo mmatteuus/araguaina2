@@ -75,7 +75,7 @@ const TransparenciaPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse informações públicas sobre a gestão municipal
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://transparencia.araguaina.to.gov.br" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const TransparenciaPage = () => {
 };
 
 export default TransparenciaPage;
+

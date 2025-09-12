@@ -77,7 +77,7 @@ const ContraChequeIMPARPage = () => {
               <p className="text-muted-foreground mb-4">
                 Entre no sistema para consultar seu contra cheque
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://impar.selfcloud.com.br/portal/Login/Login.aspx" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const ContraChequeIMPARPage = () => {
 };
 
 export default ContraChequeIMPARPage;
+

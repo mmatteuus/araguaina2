@@ -75,7 +75,7 @@ const CreditoEducativoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Invista no seu futuro com o crédito educativo municipal
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/formularios-credito-educativo" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const CreditoEducativoPage = () => {
 };
 
 export default CreditoEducativoPage;
+

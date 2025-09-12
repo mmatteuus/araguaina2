@@ -77,7 +77,7 @@ const SIGPage = () => {
               <p className="text-muted-foreground mb-4">
                 Entre no sistema de informações geográficas
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://araguaina.prodataweb.inf.br/sig" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const SIGPage = () => {
 };
 
 export default SIGPage;
+

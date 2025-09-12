@@ -74,7 +74,7 @@ const AgendamentoFazendaPage = () => {
               <p className="text-muted-foreground mb-4">
                 Evite filas e agende seu atendimento na Secretaria da Fazenda
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/agendamento-secretaria-da-fazenda" 
                   target="_blank" 
@@ -94,3 +94,4 @@ const AgendamentoFazendaPage = () => {
 };
 
 export default AgendamentoFazendaPage;
+

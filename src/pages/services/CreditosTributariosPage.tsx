@@ -75,7 +75,7 @@ const CreditosTributariosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o sistema oficial para consultar seus créditos
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/consulta-creditos-tributarios" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const CreditosTributariosPage = () => {
 };
 
 export default CreditosTributariosPage;
+

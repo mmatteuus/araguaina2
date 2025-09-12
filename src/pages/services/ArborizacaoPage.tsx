@@ -77,7 +77,7 @@ const ArborizacaoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o documento completo do plano municipal de arborização urbana
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/upload/documentos/plano-de-arborizacao.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const ArborizacaoPage = () => {
 };
 
 export default ArborizacaoPage;
+

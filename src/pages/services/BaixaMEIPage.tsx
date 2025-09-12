@@ -77,7 +77,7 @@ const BaixaMEIPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o portal oficial do governo para solicitar a baixa do MEI
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.gov.br/empresas-e-negocios/pt-br/empreendedor" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const BaixaMEIPage = () => {
 };
 
 export default BaixaMEIPage;
+

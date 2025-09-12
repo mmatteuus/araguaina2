@@ -75,7 +75,7 @@ const OuvidoriaPage = () => {
               <p className="text-muted-foreground mb-4">
                 Sua opinião é importante para melhorar os serviços municipais
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/ouvidoria" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const OuvidoriaPage = () => {
 };
 
 export default OuvidoriaPage;
+

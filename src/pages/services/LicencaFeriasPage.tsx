@@ -77,7 +77,7 @@ const LicencaFeriasPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe o formulário de solicitação de férias e LIP
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="/formularios/ferias-lip.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const LicencaFeriasPage = () => {
 };
 
 export default LicencaFeriasPage;
+

@@ -75,7 +75,7 @@ const ContraChequePage = () => {
               <p className="text-muted-foreground mb-4">
                 Portal exclusivo para servidores municipais
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/emitir-contra-cheque" 
                   target="_blank" 
@@ -96,3 +96,4 @@ const ContraChequePage = () => {
 };
 
 export default ContraChequePage;
+

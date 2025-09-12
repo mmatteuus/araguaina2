@@ -77,7 +77,7 @@ const GestaoResiduosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o documento completo do plano de gestão integrada de resíduos sólidos
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/upload/documentos/plano-gestao-residuos.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const GestaoResiduosPage = () => {
 };
 
 export default GestaoResiduosPage;
+

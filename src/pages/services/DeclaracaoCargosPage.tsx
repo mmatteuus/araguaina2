@@ -74,7 +74,7 @@ const DeclaracaoCargosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o formulário oficial de declaração
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/servicos/declaracao-de-acumulacao-de-cargos-publicos" 
                   target="_blank" 
@@ -94,3 +94,4 @@ const DeclaracaoCargosPage = () => {
 };
 
 export default DeclaracaoCargosPage;
+

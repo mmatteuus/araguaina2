@@ -90,7 +90,7 @@ const IPTUConsultaPage = () => {
 
               <Button 
                 onClick={handleConsulta}
-                className="w-full bg-gradient-primary hover:bg-primary/90"
+                variant="primaryGradient" className="w-full"
                 size="lg"
               >
                 <Search className="w-4 h-4 mr-2" />
@@ -107,3 +107,4 @@ const IPTUConsultaPage = () => {
 };
 
 export default IPTUConsultaPage;
+

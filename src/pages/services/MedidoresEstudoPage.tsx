@@ -77,7 +77,7 @@ const MedidoresEstudoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse o documento completo com a análise técnica dos medidores
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/upload/documentos/estudo-tecnico-medidores.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const MedidoresEstudoPage = () => {
 };
 
 export default MedidoresEstudoPage;
+

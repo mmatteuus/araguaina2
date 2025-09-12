@@ -77,7 +77,7 @@ const RequerimentosDiversosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe o formulário de requerimentos diversos (RD)
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="/formularios/requerimentos-diversos.pdf" 
                   target="_blank" 

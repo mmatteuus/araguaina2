@@ -77,7 +77,7 @@ const LicencaAperfeicoamentoPage = () => {
               <p className="text-muted-foreground mb-4">
                 Baixe o formulário de solicitação de licença para aperfeiçoamento
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="/formularios/licenca-aperfeicoamento.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const LicencaAperfeicoamentoPage = () => {
 };
 
 export default LicencaAperfeicoamentoPage;
+

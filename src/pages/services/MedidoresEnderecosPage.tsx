@@ -77,7 +77,7 @@ const MedidoresEnderecosPage = () => {
               <p className="text-muted-foreground mb-4">
                 Acesse a lista completa com todos os endereços dos medidores
               </p>
-              <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
+              <Button asChild size="lg" variant="primaryGradient">
                 <a 
                   href="https://www.araguaina.to.gov.br/upload/documentos/lista-enderecos-medidores.pdf" 
                   target="_blank" 
@@ -98,3 +98,4 @@ const MedidoresEnderecosPage = () => {
 };
 
 export default MedidoresEnderecosPage;
+
