@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import AccessibilityButtons from "@/components/AccessibilityButtons";
+import { Navbar } from "@/components/Navbar";
 import BackToTopButton from "@/components/BackToTopButton";
 import Categorias from "./pages/Categorias";
 import CategoriasLista from "./pages/CategoriasLista";
@@ -84,6 +85,7 @@ const App = () => (
       <TooltipProvider>
         <AccessibilityProvider>
           <BrowserRouter>
+            <Navbar />
             <Routes>
               <Route path="/" element={<Navigate to="/categorias" replace />} />
               <Route path="/servicos/iptu" element={<IPTUPage />} />

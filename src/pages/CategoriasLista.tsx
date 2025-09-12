@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import data from "@/data/servicos.json";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -56,7 +55,6 @@ const CategoriasLista = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="pt-20 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">

@@ -1,5 +1,4 @@
 import data from "@/data/servicos.json";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -89,7 +88,6 @@ const Buscar = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="pt-20 pb-20">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="mb-6 flex items-center gap-2">

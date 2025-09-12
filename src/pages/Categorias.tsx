@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -30,7 +29,6 @@ const getIconById = (id: string) => {
 const Categorias = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="pt-20 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -76,4 +74,3 @@ const Categorias = () => {
 };
 
 export default Categorias;
-

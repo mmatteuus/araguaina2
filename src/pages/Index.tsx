@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/Navbar";
 import { ServiceCard } from "@/components/ServiceCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { services } from "@/data/services";
@@ -7,7 +6,6 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   return (
       <div className="min-h-screen bg-background">
-        <Navbar />
         
         <main className="pt-20 pb-20">
           <div className="container mx-auto px-4">
