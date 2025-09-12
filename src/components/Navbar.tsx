@@ -1,17 +1,33 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Search, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
+import data from "@/data/servicos.json";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isHome = pathname === "/" || pathname === "/categorias";
   const [term, setTerm] = useState("");
+  const [openSmallSearch, setOpenSmallSearch] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  type Servico = { title: string; slug: string; category: string };
+  type Categoria = { id: string; titulo: string; servicos: Servico[] };
+  const categorias = (data.categorias as Categoria[]) || [];
+  const all: Servico[] = useMemo(() => categorias.flatMap((c) => c.servicos.map((s) => ({ ...s, category: c.titulo }))), [categorias]);
+  const suggestions = useMemo(() => {
+    const t = term.trim().toLowerCase();
+    if (!t) return [] as Servico[];
+    return all
+      .filter((s) => (s.title || "").toLowerCase().includes(t) || (s.category || "").toLowerCase().includes(t) || (s.slug || "").includes(t))
+      .slice(0, 6);
+  }, [term, all]);
 
   const onBack = () => {
     if (isHome) return;
-    navigate(-1);
+    if (typeof window !== 'undefined' && window.history.length > 1) navigate(-1);
+    else navigate('/categorias');
   };
 
   const onSubmit = (e: FormEvent) => {
@@ -37,7 +53,8 @@ export const Navbar = () => {
               Prefeitura de Araguaína
             </h1>
           </div>
-          <form onSubmit={onSubmit} className="hidden xs:flex items-center gap-2">
+          {/* Busca desktop/tablet */}
+          <form onSubmit={onSubmit} className="hidden sm:flex items-center gap-2 relative">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/80" />
               <input
@@ -48,9 +65,73 @@ export const Navbar = () => {
               />
             </div>
             <Button type="submit" size="sm" className="bg-white/20 hover:bg-white/30 text-white">Buscar</Button>
+            {term && suggestions.length > 0 && (
+              <div className="absolute top-[110%] right-0 w-[min(90vw,28rem)] bg-background border rounded-md shadow-lg p-2 z-50">
+                {suggestions.map((s) => (
+                  <button
+                    key={s.slug}
+                    type="button"
+                    onClick={() => navigate(`/servicos/${s.slug}`)}
+                    className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-foreground"
+                  >
+                    <div className="text-sm font-bold leading-tight">{s.title}</div>
+                    <div className="text-xs text-muted-foreground">{s.category}</div>
+                  </button>
+                ))}
+              </div>
+            )}
           </form>
+          {/* Busca mobile */}
+          <div className="sm:hidden">
+            {!openSmallSearch ? (
+              <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white" onClick={() => {
+                setOpenSmallSearch(true);
+                setTimeout(() => inputRef.current?.focus(), 0);
+              }}>
+                <Search className="w-4 h-4" />
+              </Button>
+            ) : null}
+          </div>
         </div>
       </div>
+      {/* Overlay de busca mobile */}
+      {openSmallSearch && (
+        <div className="sm:hidden fixed top-[56px] left-0 right-0 z-[60] px-3 pb-3">
+          <div className="bg-background/95 backdrop-blur border rounded-lg p-2 shadow-lg">
+            <form onSubmit={onSubmit} className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/70" />
+                <input
+                  ref={inputRef}
+                  value={term}
+                  onChange={(e) => setTerm(e.target.value)}
+                  placeholder="Buscar serviços..."
+                  className="w-full pl-9 pr-3 py-2 rounded-md border bg-background text-foreground text-sm"
+                />
+              </div>
+              <Button type="submit" size="sm">Ir</Button>
+              <Button type="button" variant="outline" size="sm" onClick={() => setOpenSmallSearch(false)}>
+                <X className="w-4 h-4" />
+              </Button>
+            </form>
+            {term && suggestions.length > 0 && (
+              <div className="mt-2">
+                {suggestions.map((s) => (
+                  <button
+                    key={s.slug}
+                    type="button"
+                    onClick={() => { setOpenSmallSearch(false); navigate(`/servicos/${s.slug}`); }}
+                    className="w-full text-left px-2 py-2 rounded hover:bg-accent/20 text-foreground"
+                  >
+                    <div className="text-sm font-bold leading-tight">{s.title}</div>
+                    <div className="text-xs text-muted-foreground">{s.category}</div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
