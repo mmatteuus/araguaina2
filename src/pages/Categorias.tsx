@@ -1,19 +1,34 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Users, GraduationCap, Building, ClipboardList, MapPin } from "lucide-react";
 import { services } from "@/data/services";
 import { mapToMainCategoryId } from "@/utils/categoryMap";
+import { ServiceCard } from "@/components/ServiceCard";
 
 const categorias = [
-  { id: "cidadao", titulo: "Cidadão", icon: <Users className="w-8 h-8 text-primary" /> },
-  { id: "educacao", titulo: "Educação", icon: <GraduationCap className="w-8 h-8 text-primary" /> },
-  { id: "empresa", titulo: "Empresa", icon: <Building className="w-8 h-8 text-primary" /> },
-  { id: "servidor", titulo: "Servidor", icon: <ClipboardList className="w-8 h-8 text-primary" /> },
-  { id: "turista", titulo: "Turista", icon: <MapPin className="w-8 h-8 text-primary" /> }
+  { id: "cidadao", titulo: "Cidadão" },
+  { id: "educacao", titulo: "Educação" },
+  { id: "empresa", titulo: "Empresa" },
+  { id: "servidor", titulo: "Servidor" },
+  { id: "turista", titulo: "Turista" }
 ];
+
+const getIconById = (id: string) => {
+  switch (id) {
+    case "cidadao":
+      return Users;
+    case "educacao":
+      return GraduationCap;
+    case "empresa":
+      return Building;
+    case "servidor":
+      return ClipboardList;
+    default:
+      return MapPin;
+  }
+};
 
 const Categorias = () => {
   return (
@@ -32,12 +47,7 @@ const Categorias = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categorias.map((cat) => {
-              const Icon =
-                cat.id === "cidadao" ? Users :
-                cat.id === "educacao" ? GraduationCap :
-                cat.id === "empresa" ? Building :
-                cat.id === "servidor" ? ClipboardList :
-                MapPin;
+              const Icon = getIconById(cat.id);
               return (
                 <Link
                   key={cat.id}
@@ -62,41 +72,27 @@ const Categorias = () => {
             })}
           </div>
 
-          <div className="mt-14">
-            <div className="text-center mb-6">
+          <div className="mt-14 space-y-10">
+            <div className="text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Serviços Online</h2>
-              <p className="text-foreground font-semibold">Atalhos para serviços, agora levando à categoria correspondente</p>
+              <p className="text-foreground font-semibold">Atalhos agrupados por categoria</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((s) => {
-                const catId = mapToMainCategoryId(s.category);
-                return (
-                  <Card key={s.id} className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 h-full">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex items-center space-x-4 mb-4">
-                        <div className="flex-shrink-0">
-                          {/* simples marcador, sem ícone específico aqui para manter leve */}
-                          <span className="inline-block w-8 h-8 rounded-full bg-primary/15" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
-                            {s.title}
-                          </h3>
-                        </div>
-                      </div>
-                      <p className="text-foreground text-sm font-semibold mb-6 flex-grow line-clamp-3">
-                        {s.description}
-                      </p>
-                      <div className="mt-auto">
-                        <Button asChild variant="primaryGradient" className="w-full">
-                          <Link to={`/categorias/${catId}`}>Ir para a categoria</Link>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+
+            {["cidadao", "educacao", "empresa", "servidor", "turista"].map((id) => {
+              const titulo = categorias.find((c) => c.id === id)?.titulo || id;
+              const group = services.filter((s) => mapToMainCategoryId(s.category) === id);
+              if (!group.length) return null;
+              return (
+                <section key={id} aria-labelledby={`sec-${id}`} className="space-y-4">
+                  <h3 id={`sec-${id}`} className="text-xl md:text-2xl font-bold">{titulo}</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {group.map((s) => (
+                      <ServiceCard key={s.id} service={s} />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
       </main>
@@ -106,3 +102,4 @@ const Categorias = () => {
 };
 
 export default Categorias;
+

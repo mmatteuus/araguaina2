@@ -127,6 +127,11 @@ All colors MUST be HSL.
 
   /* Spacing defaults for headings */
   h1, h2, h3 { @apply mb-2; }
+  
+  /* Uniform spacing between blocks inside common service containers */
+  .container .max-w-4xl > * + * { @apply mt-6; }
+  .container .max-w-5xl > * + * { @apply mt-6; }
+  .container .max-w-2xl > * + * { @apply mt-6; }
 
   p, span, div, label, button {
     @apply font-medium;
