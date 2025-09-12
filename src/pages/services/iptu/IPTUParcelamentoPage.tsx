@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Calendar, FileText, AlertCircle, CreditCard } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
-import { NavbarAccessibilityButtons } from "@/components/NavbarAccessibilityButtons";
+
 import { useState } from "react";
 
 const IPTUParcelamentoPage = () => {
@@ -29,7 +29,7 @@ const IPTUParcelamentoPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <NavbarAccessibilityButtons />
+        
         <div className="mb-6">
           <Link to="/servicos/iptu" className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
