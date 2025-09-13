@@ -55,8 +55,8 @@ const CategoriasLista = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="pt-20 pb-20">
-        <div className="container mx-auto px-4">
+      <main className="pt-0">
+        <div className="container mx-auto px-4 pt-24 pb-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 bg-gradient-hero bg-clip-text text-transparent">
               {cat ? cat.titulo : "Categoria"}
