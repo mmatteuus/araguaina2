@@ -45,7 +45,7 @@ const ServicoDetalhe = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="pt-20 pb-20">
+      <main className="pt-24 pb-8">
         <div className="container mx-auto px-4 max-w-3xl">
           {!servico && (
             <div className="text-center text-foreground font-semibold">Serviço não encontrado.</div>
