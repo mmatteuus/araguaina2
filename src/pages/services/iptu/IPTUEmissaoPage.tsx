@@ -15,13 +15,16 @@ const IPTUEmissaoPage = () => {
   const [exercicio, setExercicio] = useState("");
 
   const handleEmissao = () => {
-    if (!inscricao || !cpfCnpj || !exercicio) {
-      alert("Por favor, preencha todos os campos");
+    if (!cpfCnpj || !exercicio) {
+      alert("Informe CPF/CNPJ e o exercício");
       return;
     }
-    
-    // Redirecionar para o sistema oficial da prefeitura
-    window.open(`https://www.araguaina.to.gov.br/servicos/iptu/emitir-guia?inscricao=${inscricao}&documento=${cpfCnpj}&exercicio=${exercicio}`, '_blank');
+
+    const params = new URLSearchParams();
+    params.set('documento', cpfCnpj);
+    params.set('exercicio', exercicio);
+    if ((inscricao || '').trim()) params.set('inscricao', inscricao.trim());
+    window.open(`https://www.araguaina.to.gov.br/servicos/iptu/emitir-guia?${params.toString()}`, '_blank');
   };
 
   return (
@@ -50,7 +53,7 @@ const IPTUEmissaoPage = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="inscricao">Inscrição Imobiliária</Label>
+                <Label htmlFor="inscricao">Inscrição Imobiliária (opcional)</Label>
                 <Input
                   id="inscricao"
                   placeholder="Digite a inscrição do imóvel"

@@ -27,6 +27,8 @@ export async function emitirBoletos(payload: EmitirBoletosInput) {
 }
 
 export async function consultarDebitos(cpfCnpj?: string, inscricaoImobiliaria?: string) {
-  return api<Debito[]>('/arrecadacao/debitos', { method: 'GET', query: { cpfCnpj: cpfCnpj || '', inscricao: inscricaoImobiliaria || '' } });
+  const q: Record<string, string> = {};
+  if ((cpfCnpj || '').trim()) q.cpfCnpj = String(cpfCnpj).trim();
+  if ((inscricaoImobiliaria || '').trim()) q.inscricao = String(inscricaoImobiliaria).trim();
+  return api<Debito[]>('/arrecadacao/debitos', { method: 'GET', query: q });
 }
-

@@ -13,13 +13,15 @@ const IPTUConsultaPage = () => {
   const [cpfCnpj, setCpfCnpj] = useState("");
 
   const handleConsulta = () => {
-    if (!inscricao || !cpfCnpj) {
-      alert("Por favor, preencha todos os campos");
+    if (!cpfCnpj) {
+      alert("Informe ao menos o CPF/CNPJ");
       return;
     }
-    
-    // Redirecionar para o sistema oficial da prefeitura
-    window.open(`https://www.araguaina.to.gov.br/servicos/iptu/consulta?inscricao=${inscricao}&documento=${cpfCnpj}`, '_blank');
+
+    const params = new URLSearchParams();
+    params.set('documento', cpfCnpj);
+    if ((inscricao || '').trim()) params.set('inscricao', inscricao.trim());
+    window.open(`https://www.araguaina.to.gov.br/servicos/iptu/consulta?${params.toString()}`, '_blank');
   };
 
   return (
@@ -48,7 +50,7 @@ const IPTUConsultaPage = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="inscricao">Inscrição Imobiliária</Label>
+                <Label htmlFor="inscricao">Inscrição Imobiliária (opcional)</Label>
                 <Input
                   id="inscricao"
                   placeholder="Digite a inscrição do imóvel"
@@ -75,7 +77,7 @@ const IPTUConsultaPage = () => {
                     <ul className="text-xs text-muted-foreground mt-2 space-y-1">
                       <li>• A inscrição imobiliária está no carnê do IPTU</li>
                       <li>• Use apenas números no CPF/CNPJ</li>
-                      <li>• Dados obrigatórios para consulta</li>
+                      <li>• Informe CPF/CNPJ (inscrição é opcional)</li>
                     </ul>
                   </div>
                 </div>

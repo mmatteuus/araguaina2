@@ -70,7 +70,7 @@ export default function IPTUParcelamentoPage() {
                 onChange={e => setCpfCnpj(e.target.value.replace(/\D/g, ''))} placeholder="Somente números" />
             </div>
             <div>
-              <Label htmlFor="inscricao">Inscrição Imobiliária</Label>
+              <Label htmlFor="inscricao">Inscrição Imobiliária (opcional)</Label>
               <Input id="inscricao" value={inscricao}
                 onChange={e => setInscricao(e.target.value)} placeholder="Ex.: 123456-0" />
             </div>
@@ -163,4 +163,3 @@ export default function IPTUParcelamentoPage() {
     </div>
   );
 }
-
