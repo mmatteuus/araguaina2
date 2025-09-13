@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CreditCard, ArrowLeft, ExternalLink, FileText, Calculator, Calendar, Search, Printer } from "lucide-react";
+import { CreditCard, FileText, Calendar, Search, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 
@@ -78,27 +78,7 @@ const IPTUPage = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-primary/5 border-primary/20">
-            <CardContent>
-              <h3 className="text-lg font-semibold mb-2 text-center">Pronto para acessar o serviço?</h3>
-              <p className="text-muted-foreground mb-4 text-center">
-                Você será redirecionado para o portal oficial da Prefeitura de Araguaína
-              </p>
-              <div className="text-center">
-                <Button asChild size="lg" className="bg-gradient-primary hover:bg-primary/90">
-                  <a 
-                    href="https://www.araguaina.to.gov.br/servicos/iptu" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2"
-                  >
-                    <span>Acessar IPTU Online</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {/* CTA de redirecionamento removida conforme solicitação */}
 
           <Footer />
         </div>
