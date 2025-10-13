@@ -9,6 +9,7 @@ export const getServiceRoute = (serviceId: string): string => {
     "7": "/servicos/processos",
     "8": "/servicos/agendamento-fazenda",
     "9": "/servicos/certidoes",
+    "9-2": "/servicos/certidoes/validacao",
     "10": "/servicos/transparencia",
     "11": "/servicos/ouvidoria",
     "12": "/servicos/mei",
@@ -49,8 +50,10 @@ export const getServiceRoute = (serviceId: string): string => {
     "47": "/servicos/licenca-aperfeicoamento",
     "48": "/servicos/protocolo-servidor",
     "49": "/servicos/sig",
-    "50": "/servicos/vtn"
+    "50": "/servicos/vtn",
+    "51": "/servicos/debitos"
   };
   
   return routes[serviceId] || "/";
 };
+
