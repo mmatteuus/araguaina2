@@ -554,23 +554,11 @@ export const servicesCatalog: ServiceCatalog = {
       icon: "AlertCircle",
       gratuito: true,
       requerLogin: false
-    }    {
-      id: "51",
-      nome: "Consulta Consolidada de Débitos",
-      pagina: "debitos",
-      link: "/servicos/debitos",
-      publico: ["Cidaduos", "Empresas"],
-      secretaria: "Fazenda",
-      categoria: "Tributorio",
-      descricao: "Visualize todos os débitos do contribuinte em um só lugar",
-      icon: "List",
-      gratuito: true,
-      requerLogin: true
-    },
+    }
   ],
   categorias: {
     "CidadÃ£o": ["1", "4", "7", "8", "9", "10", "11", "13", "14", "15", "17", "18", "19", "23", "26"],
-    "Empresas": ["1", "2", "3", "4", "5", "6", "8", "9", "12", "18", "19", "20", "24", "51"],
+    "Empresas": ["1", "2", "3", "4", "5", "6", "8", "9", "12", "18", "19", "20", "24"],
     "Servidores": ["16", "21", "22", "25"],
     "TributÃ¡rio": ["1", "2", "3", "9", "20", "23"],
     "Protocolo": ["4", "7"],
@@ -625,5 +613,3 @@ export const getServicesByPublic = (publicType: string): ServiceDetail[] => {
     service.publico.includes(publicType)
   );
 };
-
-

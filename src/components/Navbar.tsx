@@ -1,13 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ArrowLeft, LogOut, Search, User, X } from "lucide-react";
+import { ArrowLeft, Search, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FormEvent, useMemo, useRef, useState } from "react";
 import data from "@/data/servicos.json";
@@ -15,112 +7,15 @@ import { services as fallbackServicesAll } from "@/data/services";
 import { mapToMainCategoryId } from "@/utils/categoryMap";
 import { slugify } from "@/utils/slugify";
 import { getServiceRoute } from "@/utils/serviceRoutes";
-import { useAuth } from "@/hooks/useAuth";
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { pathname } = location;
-  const { isAuthenticated, user, logout } = useAuth();
+  const { pathname } = useLocation();
   const isHome = pathname === "/" || pathname === "/categorias";
   const currentCatId = pathname.startsWith('/categorias/') ? pathname.split('/')[2] : '';
   const [term, setTerm] = useState("");
   const [openSmallSearch, setOpenSmallSearch] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const userIdentifier = useMemo(() => {
-    if (!user) return 'Usuário autenticado';
-    return user.name?.trim() || user.email?.trim() || user.cpfCnpj?.trim() || 'Usuário autenticado';
-  }, [user]);
-
-  const buttonLabel = useMemo(() => {
-    if (!isAuthenticated) return 'Entrar';
-    const firstSegment = userIdentifier.split(' ')[0] || userIdentifier;
-    return firstSegment.length > 16 ? `${firstSegment.slice(0, 15)}…` : firstSegment;
-  }, [isAuthenticated, userIdentifier]);
-
-  const goToLogin = () => {
-    setOpenSmallSearch(false);
-    navigate('/login', { state: { from: location } });
-  };
-
-  const handleLogout = () => {
-    setOpenSmallSearch(false);
-    logout();
-    navigate('/');
-  };
-
-  const menuContent = isAuthenticated ? (
-    <>
-      <DropdownMenuLabel className="flex flex-col space-y-0.5">
-        <span className="text-[10px] uppercase tracking-wide text-muted-foreground">Conectado como</span>
-        <span className="text-sm font-semibold text-foreground truncate">{userIdentifier}</span>
-      </DropdownMenuLabel>
-      {user?.email ? (
-        <DropdownMenuLabel className="text-xs font-normal text-muted-foreground break-all">
-          {user.email}
-        </DropdownMenuLabel>
-      ) : null}
-      {user?.roles?.length ? (
-        <DropdownMenuLabel className="text-[11px] font-normal text-muted-foreground">
-          Perfis: {user.roles.join(', ')}
-        </DropdownMenuLabel>
-      ) : null}
-      <DropdownMenuSeparator />
-      <DropdownMenuItem
-        onSelect={(event) => {
-          event.preventDefault();
-          handleLogout();
-        }}
-      >
-        <LogOut className="w-4 h-4 mr-2 text-red-600" />
-        <span className="text-red-600">Sair</span>
-      </DropdownMenuItem>
-    </>
-  ) : null;
-
-  const authDesktop = isAuthenticated ? (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="bg-white/10 text-white border-white/30 hover:bg-white/20"
-        >
-          <User className="w-4 h-4 mr-2" />
-          <span className="hidden md:inline">{buttonLabel}</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-64">
-        {menuContent}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  ) : (
-    <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white" onClick={goToLogin}>
-      Entrar
-    </Button>
-  );
-
-  const authMobile = isAuthenticated ? (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="bg-white/10 text-white border-white/30 hover:bg-white/20 p-2"
-        >
-          <User className="w-4 h-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-60">
-        {menuContent}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  ) : (
-    <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white" onClick={goToLogin}>
-      Entrar
-    </Button>
-  );
 
   type Servico = { title: string; slug: string; category: string; isFallback?: boolean; id?: string };
   type Categoria = { id: string; titulo: string; servicos: Servico[] };
@@ -230,20 +125,15 @@ export const Navbar = () => {
             )}
           </form>
           {/* Placeholder à direita para alinhamento com botões de acessibilidade flutuantes */}
-          <div className="flex justify-end items-center gap-2">
-            <div className="hidden sm:flex">{authDesktop}</div>
-            {/* Ações mobile */}
-            <div className="sm:hidden flex items-center gap-2">
-              {authMobile}
+          <div className="flex justify-end items-center">
+            <div className="hidden sm:block w-24" />
+            {/* Busca mobile */}
+            <div className="sm:hidden">
               {!openSmallSearch ? (
-                <Button
-                  size="sm"
-                  className="bg-white/20 hover:bg-white/30 text-white"
-                  onClick={() => {
-                    setOpenSmallSearch(true);
-                    window.setTimeout(() => inputRef.current?.focus(), 0);
-                  }}
-                >
+                <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white" onClick={() => {
+                  setOpenSmallSearch(true);
+                  setTimeout(() => inputRef.current?.focus(), 0);
+                }}>
                   <Search className="w-4 h-4" />
                 </Button>
               ) : null}

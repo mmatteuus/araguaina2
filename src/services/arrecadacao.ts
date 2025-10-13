@@ -1,5 +1,5 @@
 import { api } from '@/lib/http';
-import type { SimulacaoRepactuacaoItem, Debito, DuamResponse } from '@/types/iptu';
+import type { SimulacaoRepactuacaoItem, Debito } from '@/types/iptu';
 
 export type SimulacaoRepactuacaoInput = {
   cpfCnpj?: string;
@@ -26,31 +26,9 @@ export async function emitirBoletos(payload: EmitirBoletosInput) {
   return api<BoletoLink[]>('/arrecadacao/emitirBoletos', { method: 'POST', body: payload });
 }
 
-export type EmitirDuamInput = {
-  debitoId?: string;
-  cpfCnpj?: string;
-  inscricao?: string;
-  ano?: number;
-  parcela?: number;
-  tipo?: string;
-};
-
-export async function emitirDuam(payload: EmitirDuamInput) {
-  return api<DuamResponse | Blob>('/arrecadacao/duam', { method: 'POST', body: payload });
-}
-
-export type ConsultarDebitosOptions = {
-  tipo?: string;
-  receita?: string;
-  natureza?: string;
-};
-
-export async function consultarDebitos(cpfCnpj?: string, inscricaoImobiliaria?: string, options: ConsultarDebitosOptions = {}) {
+export async function consultarDebitos(cpfCnpj?: string, inscricaoImobiliaria?: string) {
   const q: Record<string, string> = {};
   if ((cpfCnpj || '').trim()) q.cpfCnpj = String(cpfCnpj).trim();
   if ((inscricaoImobiliaria || '').trim()) q.inscricao = String(inscricaoImobiliaria).trim();
-  if (options.tipo) q.tipo = options.tipo;
-  if (options.receita) q.receita = options.receita;
-  if (options.natureza) q.natureza = options.natureza;
   return api<Debito[]>('/arrecadacao/debitos', { method: 'GET', query: q });
 }

@@ -1,250 +1,155 @@
-import * as React from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, FileCheck, FileText, AlertCircle, Download, ClipboardCopy } from 'lucide-react';
-import { Footer } from '@/components/Footer';
-import { useToast } from '@/hooks/use-toast';
-import { emitirCertidaoNegativa } from '@/services/certidoes';
-import type { CertidaoResponse, CertidaoNegativaTipo } from '@/services/certidoes';
-import { onlyDigits, formatCpfCnpj } from '@/utils/format';
-import { SIG_LINKS, silentRedirect } from '@/lib/sigRedirects';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ArrowLeft, FileCheck, FileText, AlertCircle, Download } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Footer } from "@/components/Footer";
+import { useState } from "react";
 
-const enableBackend = String(import.meta.env.VITE_ENABLE_BACKEND_CERTIDOES) === 'true';
+const CertidaoNegativaPage = () => {
+  const [documento, setDocumento] = useState("");
+  const [nome, setNome] = useState("");
+  const [tipoCertidao, setTipoCertidao] = useState("");
+  const [inscricaoMunicipal, setInscricaoMunicipal] = useState("");
 
-const tiposCertidao: Array<{ value: CertidaoNegativaTipo; label: string }> = [
-  { value: 'geral', label: 'Certidão Geral de Débitos' },
-  { value: 'iptu', label: 'Certidão Negativa de IPTU' },
-  { value: 'iss', label: 'Certidão Negativa de ISS' },
-  { value: 'taxas', label: 'Certidão Negativa de Taxas' },
-  { value: 'multas', label: 'Certidão Negativa de Multas' },
-];
-
-const abrirCertidao = (resposta: CertidaoResponse | Blob) => {
-  const target = '_blank';
-  if (resposta instanceof Blob) {
-    const url = URL.createObjectURL(resposta);
-    window.open(url, target, 'noopener,noreferrer');
-    setTimeout(() => URL.revokeObjectURL(url), 60_000);
-    return undefined;
-  }
-  if (resposta?.url) {
-    window.open(resposta.url, target, 'noopener,noreferrer');
-    return resposta;
-  }
-  if (resposta?.pdfBase64) {
-    const cleaned = resposta.pdfBase64.includes(',') ? resposta.pdfBase64.split(',')[1] : resposta.pdfBase64;
-    const decode =
-      typeof window !== 'undefined' && typeof window.atob === 'function'
-        ? window.atob
-        : (input: string) => {
-            if (typeof Buffer !== 'undefined') {
-              return Buffer.from(input, 'base64').toString('binary');
-            }
-            throw new Error('Decodificador base64 indisponível.');
-          };
-    const binary = decode(cleaned);
-    const len = binary.length;
-    const buffer = new Uint8Array(len);
-    for (let i = 0; i < len; i += 1) buffer[i] = binary.charCodeAt(i);
-    const blob = new Blob([buffer], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    window.open(url, target, 'noopener,noreferrer');
-    setTimeout(() => URL.revokeObjectURL(url), 60_000);
-    return resposta;
-  }
-  throw new Error('Resposta inesperada ao emitir a certidão.');
-};
-
-const CertidaoNegativaPage: React.FC = () => {
-  const { toast } = useToast();
-  const [documento, setDocumento] = React.useState('');
-  const [nome, setNome] = React.useState('');
-  const [tipoCertidao, setTipoCertidao] = React.useState<CertidaoNegativaTipo | ''>('');
-  const [inscricaoMunicipal, setInscricaoMunicipal] = React.useState('');
-  const [ultimaCertidao, setUltimaCertidao] = React.useState<CertidaoResponse | null>(null);
-
-  React.useEffect(() => {
-    if (!enableBackend) {
-      silentRedirect(SIG_LINKS.CERTIDOES, { src: 'portal', feature: 'certidao-negativa' });
+  const handleEmissao = () => {
+    if (!documento || !nome || !tipoCertidao) {
+      alert("Por favor, preencha todos os campos obrigatórios");
+      return;
     }
-  }, []);
-
-  const emitir = useMutation({
-    mutationFn: async () => {
-      if (!documento || !nome || !tipoCertidao) {
-        throw new Error('Preencha os campos obrigatórios para emitir a certidão.');
-      }
-      const payload = {
-        cpfCnpj: onlyDigits(documento),
-        nome: nome.trim(),
-        tipoCertidao: tipoCertidao as CertidaoNegativaTipo,
-        inscricaoMunicipal: inscricaoMunicipal.trim() || undefined,
-      };
-      return emitirCertidaoNegativa(payload);
-    },
-    onSuccess: resposta => {
-      try {
-        const info = abrirCertidao(resposta);
-        if (info) setUltimaCertidao(info);
-        toast({
-          title: 'Certidão emitida',
-          description: info?.codigoValidacao
-            ? `Código de validação: ${info.codigoValidacao}`
-            : 'A certidão foi aberta em uma nova aba.',
-        });
-      } catch (error) {
-        const message = error instanceof Error ? error.message : 'Não foi possível abrir a certidão.';
-        toast({ title: 'Erro ao abrir certidão', description: message });
-      }
-    },
-    onError: (error: unknown) => {
-      const message = error instanceof Error ? error.message : 'Não foi possível emitir a certidão.';
-      toast({ title: 'Erro na emissão', description: message });
-    },
-  });
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    emitir.mutate();
+    
+    // Redirecionar para o sistema oficial da prefeitura
+    window.open(`https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/debito-contribuinte`, '_blank');
   };
-
-  const codigoValidacao = ultimaCertidao?.codigoValidacao;
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 pt-24 pb-8">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <Link to="/servicos/certidoes" className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold">
-            <ArrowLeft className="w-4 h-4" />
-            Voltar
-          </Link>
-
-          <div className="text-center space-y-2">
-            <div className="flex justify-center">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-4">
               <FileCheck className="w-16 h-16 text-primary" />
             </div>
-            <h1 className="text-3xl font-bold text-foreground">Certidão Negativa de Débitos</h1>
-            <p className="text-lg text-muted-foreground">
-              Emita e baixe a certidão negativa diretamente no portal.
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              Certidão Negativa de Débitos
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              Emita sua certidão negativa municipal
             </p>
           </div>
 
-          <Card>
+          <Card className="mb-6">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FileText className="w-5 h-5" />
-                Dados para emissão
+              <CardTitle className="flex items-center">
+                <FileText className="w-5 h-5 mr-2" />
+                Dados para Emissão
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="documento">CPF/CNPJ *</Label>
+                <Input
+                  id="documento"
+                  placeholder="Digite CPF ou CNPJ (apenas números)"
+                  value={documento}
+                  onChange={(e) => setDocumento(e.target.value)}
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="nome">Nome/Razão Social *</Label>
+                <Input
+                  id="nome"
+                  placeholder="Digite o nome completo ou razão social"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="tipoCertidao">Tipo de Certidão *</Label>
+                <Select value={tipoCertidao} onValueChange={setTipoCertidao}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione o tipo de certidão" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="geral">Certidão Geral de Débitos</SelectItem>
+                    <SelectItem value="iptu">Certidão Negativa de IPTU</SelectItem>
+                    <SelectItem value="iss">Certidão Negativa de ISS</SelectItem>
+                    <SelectItem value="taxas">Certidão Negativa de Taxas</SelectItem>
+                    <SelectItem value="multas">Certidão Negativa de Multas</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {(tipoCertidao === "iss" || tipoCertidao === "geral") && (
                 <div className="space-y-2">
-                  <Label htmlFor="documento">CPF/CNPJ *</Label>
+                  <Label htmlFor="inscricaoMunicipal">Inscrição Municipal</Label>
                   <Input
-                    id="documento"
-                    value={documento}
-                    onChange={event => setDocumento(onlyDigits(event.target.value))}
-                    placeholder="Somente números"
-                    inputMode="numeric"
-                    maxLength={14}
-                    required
+                    id="inscricaoMunicipal"
+                    placeholder="Digite a inscrição municipal (se possuir)"
+                    value={inscricaoMunicipal}
+                    onChange={(e) => setInscricaoMunicipal(e.target.value)}
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="nome">Nome / Razão social *</Label>
-                  <Input
-                    id="nome"
-                    value={nome}
-                    onChange={event => setNome(event.target.value)}
-                    placeholder="Informe o nome completo"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="tipo">Tipo de certidão *</Label>
-                  <Select value={tipoCertidao} onValueChange={value => setTipoCertidao(value as CertidaoNegativaTipo)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione o tipo de certidão" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {tiposCertidao.map(tipo => (
-                        <SelectItem key={tipo.value} value={tipo.value}>
-                          {tipo.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+              )}
 
-                {(tipoCertidao === 'iss' || tipoCertidao === 'geral') && (
-                  <div className="space-y-2">
-                    <Label htmlFor="inscricaoMunicipal">Inscrição municipal</Label>
-                    <Input
-                      id="inscricaoMunicipal"
-                      value={inscricaoMunicipal}
-                      onChange={event => setInscricaoMunicipal(event.target.value.toUpperCase())}
-                      placeholder="Opcional, quando aplicável"
-                    />
-                  </div>
-                )}
-
-                <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 flex gap-3">
-                  <AlertCircle className="w-5 h-5 text-accent mt-0.5" />
-                  <div className="text-sm text-muted-foreground space-y-1">
-                    <p>A certidão negativa é emitida gratuitamente e possui validade de 60 dias.</p>
-                    <p>Certifique-se de que não existam débitos em aberto e que os dados cadastrais estejam atualizados.</p>
+              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <div className="flex items-start space-x-3">
+                  <FileCheck className="w-5 h-5 text-green-600 mt-1" />
+                  <div>
+                    <p className="text-sm font-medium text-green-800">Validade da Certidão:</p>
+                    <ul className="text-xs text-green-700 mt-2 space-y-1">
+                      <li>• Certidão válida por 60 dias</li>
+                      <li>• Emissão gratuita</li>
+                      <li>• Documento com assinatura digital</li>
+                      <li>• Aceita para todos os órgãos públicos</li>
+                    </ul>
                   </div>
                 </div>
+              </div>
 
-                <Button type="submit" size="lg" className="w-full bg-gradient-primary hover:bg-primary/90" disabled={emitir.isPending}>
-                  {emitir.isPending ? 'Emitindo...' : <><Download className="w-4 h-4 mr-2" />Emitir certidão</>}
-                </Button>
-              </form>
+              <div className="bg-accent/10 p-4 rounded-lg">
+                <div className="flex items-start space-x-3">
+                  <AlertCircle className="w-5 h-5 text-accent mt-1" />
+                  <div>
+                    <p className="text-sm font-medium">Requisitos para emissão:</p>
+                    <ul className="text-xs text-muted-foreground mt-2 space-y-1">
+                      <li>• Não possuir débitos em aberto</li>
+                      <li>• Dados atualizados no cadastro municipal</li>
+                      <li>• Para empresas: inscrição municipal ativa</li>
+                      <li>• Documentos válidos e não vencidos</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                <div className="flex items-start space-x-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 mt-1" />
+                  <div>
+                    <p className="text-sm font-medium text-red-800">Se houver débitos pendentes:</p>
+                    <ul className="text-xs text-red-700 mt-2 space-y-1">
+                      <li>• Quite os débitos antes de solicitar a certidão</li>
+                      <li>• Parcelamentos em dia são aceitos</li>
+                      <li>• Aguarde 48h após pagamento para emitir</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <Button 
+                onClick={handleEmissao}
+                className="w-full bg-gradient-primary hover:bg-primary/90"
+                size="lg"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Emitir Certidão Negativa
+              </Button>
             </CardContent>
           </Card>
-
-          {ultimaCertidao && (
-            <Card className="border-primary/20 bg-primary/5">
-              <CardHeader>
-                <CardTitle className="text-lg font-semibold">Dados da certidão</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p>Contribuinte: <span className="font-medium text-foreground">{formatCpfCnpj(onlyDigits(documento))} — {nome}</span></p>
-                {ultimaCertidao.emitidaEm && <p>Emitida em: <span className="font-medium text-foreground">{ultimaCertidao.emitidaEm}</span></p>}
-                {ultimaCertidao.validade && <p>Validade até: <span className="font-medium text-foreground">{ultimaCertidao.validade}</span></p>}
-                {codigoValidacao && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    className="mt-2 flex items-center gap-2"
-                    onClick={() => {
-                      if (navigator?.clipboard?.writeText) {
-                        navigator.clipboard
-                          .writeText(codigoValidacao)
-                          .then(() => {
-                            toast({ title: 'Código copiado', description: 'Código de validação copiado para a área de transferência.' });
-                          })
-                          .catch(() => {
-                            toast({ title: 'Não foi possível copiar', description: codigoValidacao });
-                          });
-                      } else {
-                        toast({ title: 'Copie manualmente', description: codigoValidacao });
-                      }
-                    }}
-                  >
-                    <ClipboardCopy className="w-4 h-4" />
-                    Código de validação: {codigoValidacao}
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
-          )}
 
           <Footer />
         </div>
