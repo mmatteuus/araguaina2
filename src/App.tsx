@@ -5,9 +5,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import AccessibilityButtons from "@/components/AccessibilityButtons";
 import { Navbar } from "@/components/Navbar";
 import BackToTopButton from "@/components/BackToTopButton";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Categorias from "./pages/Categorias";
 import CategoriasLista from "./pages/CategoriasLista";
 import ServicoDetalhe from "./pages/ServicoDetalhe";
@@ -23,6 +25,7 @@ import NotaFiscalEmissaoPage from "./pages/services/notafiscal/NotaFiscalEmissao
 import NotaFiscalConsultaPage from "./pages/services/notafiscal/NotaFiscalConsultaPage";
 import MultasConsultaPage from "./pages/services/multas/MultasConsultaPage";
 import CertidaoNegativaPage from "./pages/services/certidoes/CertidaoNegativaPage";
+import CertidaoValidacaoPage from "./pages/services/certidoes/CertidaoValidacaoPage";
 import ProtocoloConsultaPage from "./pages/services/protocolo/ProtocoloConsultaPage";
 import ISSPage from "./pages/services/ISSPage";
 import NotaFiscalPage from "./pages/services/NotaFiscalPage";
@@ -76,22 +79,58 @@ import ProtocoloServidorPage from "./pages/services/ProtocoloServidorPage";
 import VTNPage from "./pages/services/VTNPage";
 import SIGPage from "./pages/services/SIGPage";
 import Buscar from "./pages/Buscar";
+import LoginPage from "./pages/LoginPage";
+import DebitosConsolidadosPage from "./pages/services/DebitosConsolidadosPage";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <TooltipProvider>
-        <AccessibilityProvider>
-          <BrowserRouter>
-            <Navbar />
-            <Routes>
+const isEnabled = (value: unknown) => String(value) === "true";
+
+const App = () => {
+  const requireAuthFlags = {
+    iptu: isEnabled(import.meta.env.VITE_ENABLE_BACKEND_IPTU),
+    taxas: isEnabled(import.meta.env.VITE_ENABLE_BACKEND_TAXAS),
+    alvara: isEnabled(import.meta.env.VITE_ENABLE_BACKEND_ALVARA),
+    certidoes: isEnabled(import.meta.env.VITE_ENABLE_BACKEND_CERTIDOES),
+    servidor: isEnabled(import.meta.env.VITE_ENABLE_BACKEND_SERVIDOR),
+  };
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <TooltipProvider>
+            <AccessibilityProvider>
+              <BrowserRouter>
+                <Navbar />
+                <Routes>
               <Route path="/" element={<Navigate to="/categorias" replace />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/servicos/iptu" element={<IPTUPage />} />
-              <Route path="/servicos/iptu/consulta" element={<IPTUConsultaPage />} />
-              <Route path="/servicos/iptu/emissao" element={<IPTUEmissaoPage />} />
-              <Route path="/servicos/iptu/parcelamento" element={<IPTUParcelamentoPage />} />
+              <Route
+                path="/servicos/iptu/consulta"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.iptu}>
+                    <IPTUConsultaPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/servicos/iptu/emissao"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.iptu}>
+                    <IPTUEmissaoPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/servicos/iptu/parcelamento"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.iptu}>
+                    <IPTUParcelamentoPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/servicos/iss" element={<ISSPage />} />
               <Route path="/servicos/iss/consulta" element={<ISSConsultaPage />} />
               <Route path="/servicos/iss/emissao" element={<ISSEmissaoPage />} />
@@ -102,11 +141,34 @@ const App = () => (
               <Route path="/servicos/multas" element={<MultasPage />} />
               <Route path="/servicos/multas/consulta" element={<MultasConsultaPage />} />
               <Route path="/servicos/certidoes" element={<CertidoesPage />} />
-              <Route path="/servicos/certidoes/negativa" element={<CertidaoNegativaPage />} />
+              <Route
+                path="/servicos/certidoes/negativa"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.certidoes}>
+                    <CertidaoNegativaPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/servicos/certidoes/validacao" element={<CertidaoValidacaoPage />} />
+              <Route
+                path="/servicos/debitos"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.iptu}>
+                    <DebitosConsolidadosPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/servicos/protocolo" element={<ProtocoloPage />} />
               <Route path="/servicos/protocolo/consulta" element={<ProtocoloConsultaPage />} />
               <Route path="/servicos/licenca-sanitaria" element={<LicencaSanitariaPage />} />
-              <Route path="/servicos/alvara" element={<AlvaraPage />} />
+              <Route
+                path="/servicos/alvara"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.alvara}>
+                    <AlvaraPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/servicos/processos" element={<ProcessosPage />} />
               <Route path="/servicos/agendamento" element={<AgendamentoPage />} />
               <Route path="/servicos/transparencia" element={<TransparenciaPage />} />
@@ -114,7 +176,14 @@ const App = () => (
               <Route path="/servicos/mapa" element={<MapaPage />} />
               <Route path="/servicos/mei" element={<MEIPage />} />
               <Route path="/servicos/diario-oficial" element={<DiarioOficialPage />} />
-              <Route path="/servicos/contra-cheque" element={<ContraChequePage />} />
+              <Route
+                path="/servicos/contra-cheque"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.servidor}>
+                    <ContraChequePage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/servicos/credito-educativo" element={<CreditoEducativoPage />} />
               <Route path="/servicos/codigo-edificacoes" element={<CodigoEdificacoesPage />} />
               <Route path="/servicos/agendamento-fazenda" element={<AgendamentoFazendaPage />} />
@@ -123,7 +192,14 @@ const App = () => (
               <Route path="/servicos/creditos-tributarios" element={<CreditosTributariosPage />} />
               <Route path="/servicos/declaracao-cargos" element={<DeclaracaoCargosPage />} />
               <Route path="/servicos/declaracao-bens" element={<DeclaracaoBensPage />} />
-              <Route path="/servicos/taxa-lixo" element={<TaxaLixoPage />} />
+              <Route
+                path="/servicos/taxa-lixo"
+                element={
+                  <ProtectedRoute requireAuth={requireAuthFlags.taxas}>
+                    <TaxaLixoPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/servicos/licenciamento-ambiental" element={<LicenciamentoAmbientalPage />} />
               <Route path="/servicos/consignacoes" element={<ConsignacoesPage />} />
               <Route path="/servicos/dat" element={<DATPage />} />
@@ -142,14 +218,14 @@ const App = () => (
               <Route path="/servicos/dispensa-vistoria-bombeiros" element={<DispensaVistoriaBombeirosPage />} />
               <Route path="/servicos/atualizar-mei" element={<AtualizarMEIPage />} />
               <Route path="/servicos/baixa-mei" element={<BaixaMEIPage />} />
-            <Route path="/servicos/contra-cheque-impar" element={<ContraChequeIMPARPage />} />
-            <Route path="/servicos/junta-medica" element={<JuntaMedicaPage />} />
-            <Route path="/servicos/licenca-premio" element={<LicencaPremioPage />} />
-            <Route path="/servicos/licenca-ferias" element={<LicencaFeriasPage />} />
-            <Route path="/servicos/requerimentos-diversos" element={<RequerimentosDiversosPage />} />
-            <Route path="/servicos/licenca-aperfeicoamento" element={<LicencaAperfeicoamentoPage />} />
-            <Route path="/servicos/protocolo-servidor" element={<ProtocoloServidorPage />} />
-            <Route path="/servicos/vtn" element={<VTNPage />} />
+              <Route path="/servicos/contra-cheque-impar" element={<ContraChequeIMPARPage />} />
+              <Route path="/servicos/junta-medica" element={<JuntaMedicaPage />} />
+              <Route path="/servicos/licenca-premio" element={<LicencaPremioPage />} />
+              <Route path="/servicos/licenca-ferias" element={<LicencaFeriasPage />} />
+              <Route path="/servicos/requerimentos-diversos" element={<RequerimentosDiversosPage />} />
+              <Route path="/servicos/licenca-aperfeicoamento" element={<LicencaAperfeicoamentoPage />} />
+              <Route path="/servicos/protocolo-servidor" element={<ProtocoloServidorPage />} />
+              <Route path="/servicos/vtn" element={<VTNPage />} />
               <Route path="/servicos/sig" element={<SIGPage />} />
               <Route path="/buscar" element={<Buscar />} />
               {/* Rotas dinâmicas de catálogo */}
@@ -166,7 +242,9 @@ const App = () => (
         </AccessibilityProvider>
       </TooltipProvider>
     </ThemeProvider>
+  </AuthProvider>
   </QueryClientProvider>
 );
+};
 
 export default App;

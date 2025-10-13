@@ -24,5 +24,26 @@ export type Debito = {
   descricao: string;
   valor: number;
   selecionavel: boolean;
+  parcela?: number;
+  tipo?: string;
+  receita?: string;
+  inscricao?: string;
+  inscricaoImobiliaria?: string;
+  documento?: string;
+  contribuinte?: string;
+  situacao?: string;
+  vencimento?: string;
+  valorAtualizado?: number;
+  linhaDigitavel?: string;
+  codigoBarras?: string;
+};
+
+export type DuamResponse = {
+  url?: string;
+  pdfBase64?: string;
+  linhaDigitavel?: string;
+  codigoBarras?: string;
+  nossoNumero?: string;
+  vencimento?: string;
 };
 

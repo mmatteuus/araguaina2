@@ -42,7 +42,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors duration-200"
             >
-              Desenvolvido por Tec63.com.br
+              Desenvolvido por MtsFerreira
             </a>
           </p>
         </div>
