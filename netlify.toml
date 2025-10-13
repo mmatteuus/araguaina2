@@ -3,3 +3,13 @@ from="/api/*"
 to="https://araguaina.prodataweb.inf.br/sigintegracaorest/:splat"
 status=200
 force=true
+
+[[headers]]
+for="/assets/*.js"
+  [headers.values]
+  Content-Type="application/javascript; charset=utf-8"
+
+[[headers]]
+for="/assets/*.css"
+  [headers.values]
+  Content-Type="text/css; charset=utf-8"
