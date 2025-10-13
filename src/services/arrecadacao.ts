@@ -39,18 +39,9 @@ export async function emitirDuam(payload: EmitirDuamInput) {
   return api<DuamResponse | Blob>('/arrecadacao/duam', { method: 'POST', body: payload });
 }
 
-export type ConsultarDebitosOptions = {
-  tipo?: string;
-  receita?: string;
-  natureza?: string;
-};
-
-export async function consultarDebitos(cpfCnpj?: string, inscricaoImobiliaria?: string, options: ConsultarDebitosOptions = {}) {
+export async function consultarDebitos(cpfCnpj?: string, inscricaoImobiliaria?: string) {
   const q: Record<string, string> = {};
   if ((cpfCnpj || '').trim()) q.cpfCnpj = String(cpfCnpj).trim();
   if ((inscricaoImobiliaria || '').trim()) q.inscricao = String(inscricaoImobiliaria).trim();
-  if (options.tipo) q.tipo = options.tipo;
-  if (options.receita) q.receita = options.receita;
-  if (options.natureza) q.natureza = options.natureza;
   return api<Debito[]>('/arrecadacao/debitos', { method: 'GET', query: q });
 }

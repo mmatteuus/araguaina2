@@ -26,14 +26,10 @@ export type Debito = {
   selecionavel: boolean;
   parcela?: number;
   tipo?: string;
-  receita?: string;
   inscricao?: string;
   inscricaoImobiliaria?: string;
-  documento?: string;
-  contribuinte?: string;
-  situacao?: string;
-  vencimento?: string;
   valorAtualizado?: number;
+  situacao?: string;
   linhaDigitavel?: string;
   codigoBarras?: string;
 };

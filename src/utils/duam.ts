@@ -1,26 +1,19 @@
 import type { DuamResponse } from '@/types/iptu';
 
 type OpenDuamOptions = {
-  fileName?: string;
   target?: string;
 };
 
-const toBlobFromBase64 = (base64: string) => {
-  const cleaned = base64.includes(',') ? base64.split(',')[1] : base64;
-  const decode =
-    typeof window !== 'undefined' && typeof window.atob === 'function'
-      ? window.atob
-      : (input: string) => {
-          if (typeof Buffer !== 'undefined') {
-            return Buffer.from(input, 'base64').toString('binary');
-          }
-          throw new Error('Base64 decoder indisponível.');
-        };
-  const binary = decode(cleaned);
-  const len = binary.length;
-  const buffer = new Uint8Array(len);
-  for (let i = 0; i < len; i += 1) buffer[i] = binary.charCodeAt(i);
-  return new Blob([buffer], { type: 'application/pdf' });
+const decodeBase64 = (input: string) => {
+  const normalized = input.replace(/-/g, '+').replace(/_/g, '/');
+  const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=');
+  if (typeof window !== 'undefined' && typeof window.atob === 'function') {
+    return window.atob(padded);
+  }
+  if (typeof Buffer !== 'undefined') {
+    return Buffer.from(padded, 'base64').toString('binary');
+  }
+  throw new Error('Decodificador base64 indisponível.');
 };
 
 export type DuamOpenResult = {
@@ -28,7 +21,7 @@ export type DuamOpenResult = {
   linhaDigitavel?: string;
   codigoBarras?: string;
   nossoNumero?: string;
-  venceEm?: string;
+  vencimento?: string;
 };
 
 export function openDuamResponse(response: DuamResponse | Blob, options: OpenDuamOptions = {}): DuamOpenResult {
@@ -46,11 +39,17 @@ export function openDuamResponse(response: DuamResponse | Blob, options: OpenDua
       linhaDigitavel: response.linhaDigitavel,
       codigoBarras: response.codigoBarras,
       nossoNumero: response.nossoNumero,
-      venceEm: response.vencimento,
+      vencimento: response.vencimento,
     };
   }
   if (response?.pdfBase64) {
-    const blob = toBlobFromBase64(response.pdfBase64);
+    const binary = decodeBase64(response.pdfBase64.includes(',') ? response.pdfBase64.split(',')[1] : response.pdfBase64);
+    const len = binary.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i += 1) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    const blob = new Blob([bytes], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
     window.open(url, target, 'noopener,noreferrer');
     setTimeout(() => URL.revokeObjectURL(url), 60_000);
@@ -59,8 +58,8 @@ export function openDuamResponse(response: DuamResponse | Blob, options: OpenDua
       linhaDigitavel: response.linhaDigitavel,
       codigoBarras: response.codigoBarras,
       nossoNumero: response.nossoNumero,
-      venceEm: response.vencimento,
+      vencimento: response.vencimento,
     };
   }
-  throw new Error('Resposta inesperada da emissão de DUAM.');
+  throw new Error('Resposta inesperada ao emitir a guia.');
 }

@@ -145,28 +145,27 @@ const IPTUEmissaoPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 pt-24 pb-8">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <div className="flex items-center justify-between">
-            <Link to="/servicos/iptu" className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold">
-              <ArrowLeft className="w-4 h-4" />
-              Voltar
-            </Link>
-          </div>
+        <div className="flex items-center justify-between mb-6">
+          <Link to="/servicos/iptu" className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold">
+            <ArrowLeft className="w-4 h-4" />
+            Voltar
+          </Link>
+        </div>
 
-          <div className="text-center">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <div className="text-center mb-4">
             <div className="flex justify-center mb-4">
               <Printer className="w-16 h-16 text-primary" />
             </div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">Emissão de Guias de IPTU</h1>
-            <p className="text-xl text-muted-foreground">Selecione o exercício desejado e gere a guia atualizada</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Emissão de Guias IPTU</h1>
+            <p className="text-xl text-muted-foreground">
+              Consulte e gere guias atualizadas sem sair do portal
+            </p>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Download className="w-5 h-5" />
-                Dados para emissão
-              </CardTitle>
+              <CardTitle className="text-lg font-semibold">Dados para emissão</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -231,8 +230,16 @@ const IPTUEmissaoPage: React.FC = () => {
                 <CardTitle className="text-lg font-semibold">Guias disponíveis</CardTitle>
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                   <div className="text-sm text-muted-foreground space-y-1">
-                    {documentoFormatado && <p>Contribuinte: <span className="font-medium text-foreground">{documentoFormatado}</span></p>}
-                    {inscricaoFormatada && <p>Inscrição: <span className="font-medium text-foreground">{inscricaoFormatada}</span></p>}
+                    {documentoFormatado && (
+                      <p>
+                        Contribuinte: <span className="font-medium text-foreground">{documentoFormatado}</span>
+                      </p>
+                    )}
+                    {inscricaoFormatada && (
+                      <p>
+                        Inscrição: <span className="font-medium text-foreground">{inscricaoFormatada}</span>
+                      </p>
+                    )}
                   </div>
                   <div className="md:w-52">
                     <Label className="text-xs uppercase text-muted-foreground">Exercício</Label>

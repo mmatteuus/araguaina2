@@ -17,12 +17,4 @@ export const formatCpfCnpj = (value: string | null | undefined) => {
   return value;
 };
 
-export const formatInscricao = (value: string | null | undefined) => {
-  if (!value) return '';
-  const cleaned = value.trim();
-  if (!cleaned) return '';
-  return cleaned.toUpperCase();
-};
-
-export const sumValues = (values: Array<number | null | undefined>) =>
-  values.reduce((total, current) => total + (typeof current === 'number' && !Number.isNaN(current) ? current : 0), 0);
+export const formatInscricao = (value: string | null | undefined) => (value || '').trim().toUpperCase();
