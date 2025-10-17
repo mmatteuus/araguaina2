@@ -8,6 +8,8 @@ import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import AccessibilityButtons from "@/components/AccessibilityButtons";
 import { Navbar } from "@/components/Navbar";
 import BackToTopButton from "@/components/BackToTopButton";
+import ExternalRedirect from "@/routes/ExternalRedirect";
+import { SERVICOS } from "@/data/servicos";
 import Categorias from "./pages/Categorias";
 import CategoriasLista from "./pages/CategoriasLista";
 import ServicoDetalhe from "./pages/ServicoDetalhe";
@@ -78,6 +80,14 @@ import SIGPage from "./pages/services/SIGPage";
 import Buscar from "./pages/Buscar";
 
 const queryClient = new QueryClient();
+
+const EXTERNAL_REDIRECT_ALIASES = Array.from(
+  new Set(
+    SERVICOS.flatMap((service) => service.aliases ?? [])
+      .filter(Boolean)
+      .map((alias) => alias.toLowerCase())
+  )
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -155,7 +165,15 @@ const App = () => (
               {/* Rotas dinâmicas de catálogo */}
               <Route path="/categorias" element={<Categorias />} />
               <Route path="/categorias/:categoria" element={<CategoriasLista />} />
+              <Route path="/servicos/:slug/externo" element={<ExternalRedirect />} />
               <Route path="/servicos/:slug" element={<ServicoDetalhe />} />
+              {EXTERNAL_REDIRECT_ALIASES.map((alias) => (
+                <Route
+                  key={`external-${alias}`}
+                  path={`/${alias}`}
+                  element={<ExternalRedirect alias={alias} />}
+                />
+              ))}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

@@ -3,3 +3,167 @@ from="/api/*"
 to="https://araguaina.prodataweb.inf.br/sigintegracaorest/:splat"
 status=200
 force=true
+
+# Tributário / Fazenda
+[[redirects]]
+  from = "/iptu"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/debito-imovel"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cnd"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/debito-contribuinte"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/validar-cnd"
+  to = "https://sig.araguaina.to.gov.br/sig/app.html#/servicosonline/debito-contribuinte"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/creditos"
+  to = "https://araguainato.webiss.com.br/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tributos"
+  to = "https://araguainato.webiss.com.br/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/desconto-iptu"
+  to = "https://araguaina.to.gov.br/secretarias/secretaria-municipal-da-fazenda-tecnologia-ciencia-e-inovacao"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/agenda"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/agenda-atendimento"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/lixo"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/debito-contribuinte"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/taxa-lixo"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/debito-contribuinte"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/credito-educativo"
+  to = "https://araguaina.1doc.com.br/b.php?pg=wp/wp&s=araguaina&itd=18&is=4829210"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/renovacao-credito"
+  to = "https://araguaina.1doc.com.br/b.php?pg=wp/wp&s=araguaina&itd=18&is=4829210"
+  status = 301
+  force = true
+
+# Processos / Protocolo
+[[redirects]]
+  from = "/protocolo"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/andamento-processo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/andamento"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/andamento-processo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/protocolo-eletronico"
+  to = "https://araguaina.prodataweb.inf.br/sig/app.html#/servicosonline/andamento-processo/"
+  status = 301
+  force = true
+
+# ASTT / Trânsito
+[[redirects]]
+  from = "/multas"
+  to = "https://araguaina.to.gov.br/secretarias/agencia-municipal-de-seguranca-transporte-e-transito"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/infracoes"
+  to = "https://portalservicos.senatran.serpro.gov.br/#/home"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/medidores"
+  to = "https://araguaina.to.gov.br/secretarias/agencia-municipal-de-seguranca-transporte-e-transito"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/medidores-enderecos"
+  to = "https://araguaina.to.gov.br/secretarias/agencia-municipal-de-seguranca-transporte-e-transito"
+  status = 301
+  force = true
+
+# Leis / Diário / Transparência
+[[redirects]]
+  from = "/leis"
+  to = "https://leis.araguaina.to.gov.br/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/diario"
+  to = "https://diariooficial.araguaina.to.gov.br/diario-oficial"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/transparencia"
+  to = "https://transparencia.araguaina.to.gov.br/transparencia"
+  status = 301
+  force = true
+
+# Planejamento urbano / Meio ambiente
+[[redirects]]
+  from = "/arborizacao"
+  to = "https://drive.google.com/file/d/11_w9vsn5vVlJgfMPskf8sxSS4r9rmXin/view"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/residuos"
+  to = "https://araguaina.to.gov.br/plano-municipal-de-gestao-integrada-de-residuos-solidos.pdf"
+  status = 301
+  force = true
+
+# Geoprocessamento
+[[redirects]]
+  from = "/siga"
+  to = "https://siga.araguaina.to.gov.br/araguaina/"
+  status = 301
+  force = true
+
+# VTN
+[[redirects]]
+  from = "/vtn"
+  to = "https://araguaina.to.gov.br/vtn-municipal-de-araguaina"
+  status = 301
+  force = true
+
+# Outros úteis
+[[redirects]]
+  from = "/codigo-edificacoes"
+  to = "https://araguaina.to.gov.br/secretarias/secretaria-municipal-da-infraestrutura"
+  status = 301
+  force = true
